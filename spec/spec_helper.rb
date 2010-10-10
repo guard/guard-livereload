@@ -1,5 +1,5 @@
-require 'rubygems'
 require 'rspec'
+require 'guard/livereload'
 
 RSpec.configure do |config|
   config.color_enabled = true

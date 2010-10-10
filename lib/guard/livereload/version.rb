@@ -1,5 +1,5 @@
 module Guard
-  class LiveReload
-    VERSION = "0.1.0"
+  module LiveReloadVersion
+    VERSION = "0.1.1"
   end
 end

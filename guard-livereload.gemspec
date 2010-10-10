@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require 'guard/livereload'
 require 'guard/livereload/version'
 
 Gem::Specification.new do |s|
   s.name        = "guard-livereload"
-  s.version     = Guard::LiveReload::VERSION
+  s.version     = Guard::LiveReloadVersion::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Thibaud Guillaume-Gentil']
   s.email       = ['thibaud@thibaud.me']
