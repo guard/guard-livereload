@@ -1,0 +1,58 @@
+= Guard::LiveReload
+
+LiveReload guard allows to automatically reload your browser when 'view' files are modified.
+
+== Install
+
+Please be sure to have {guard}[http://github.com/guard/guard] installed before continue.
+
+Install the gem:
+
+    gem install guard-livereload
+
+Add it to your Gemfile (inside test group):
+
+    gem 'guard-livereload'
+
+Add guard definition to your Guardfile with:
+
+    guard init livereload
+
+Install {livereload Safari/Chrome extension}[http://github.com/mockko/livereload]
+
+== Usage
+
+Please read {guard usage doc}[http://github.com/guard/guard#readme]
+and {livereload extension usage doc}[http://github.com/mockko/livereload]
+
+== Guardfile
+
+You can adapt your 'view' files like you want.
+Please read {guard doc}[http://github.com/guard/guard#readme] for more info about Guardfile DSL.
+
+    guard 'livereload' do
+      watch('^app/.+\.(erb|haml)$')
+      watch('^app/helpers/.+\.rb$')
+      watch('^/public/.+\.(css|js|html)$')
+      watch('^config/locales/.+\.ym$')
+    end
+
+== Options
+
+LiveReload guard have three options (host, port, api_version):
+
+    guard 'livereload', :port => '35728' do
+      ...
+    end
+
+== Development
+
+- Source hosted at {GitHub}[http://github.com/guard/guard-livereload]
+- Report issues/Questions/Feature requests on {GitHub Issues}[http://github.com/guard/guard-livereload/issues]
+
+Pull requests are very welcome! Make sure your patches are well tested. Please create a topic branch for every separate change
+you make.
+
+== Authors
+
+{Thibaud Guillaume-Gentil}[http://github.com/thibaudgg]
