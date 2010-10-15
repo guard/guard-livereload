@@ -14,13 +14,13 @@ Gem::Specification.new do |s|
   
   s.rubyforge_project = "guard-livereload"
   
-  s.add_dependency 'guard',        '~> 0.1.1'
+  s.add_dependency 'guard'
   s.add_dependency 'em-websocket', '~> 0.1.3'
   s.add_dependency 'json',         '~> 1.4.6'
   
   s.add_development_dependency 'bundler',     '~> 1.0.2'
-  s.add_development_dependency 'guard-rspec', '~> 0.1.1'
-  s.add_development_dependency 'rspec',       '~> 2.0.0.rc'
+  s.add_development_dependency 'guard-rspec', '~> 0.1.3'
+  s.add_development_dependency 'rspec',       '~> 2.0.0'
   
   s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.rdoc]
   s.require_path = 'lib'

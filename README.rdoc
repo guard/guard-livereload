@@ -14,7 +14,7 @@ Add it to your Gemfile (inside test group):
 
     gem 'guard-livereload'
 
-Add guard definition to your Guardfile with:
+Add guard definition to your Guardfile by running this command:
 
     guard init livereload
 
