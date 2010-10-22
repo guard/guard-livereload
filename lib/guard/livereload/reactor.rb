@@ -9,6 +9,7 @@ module Guard
       
       def initialize(options)
         @web_sockets = []
+        @options = options
         @thread = start_threaded_reactor(options)
       end
       
@@ -19,7 +20,7 @@ module Guard
       def reload_browser(paths = [])
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
-          data = ['refresh', { :path => path, :apply_js_live => false, :apply_css_live => true }].to_json
+          data = ['refresh', { :path => path, :apply_js_live => @options[:apply_js_live], :apply_css_live => @options[:apply_css_live] }].to_json
           UI.debug data
           @web_sockets.each { |ws| ws.send(data) }
         end

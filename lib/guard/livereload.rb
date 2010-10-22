@@ -8,9 +8,11 @@ module Guard
     attr_accessor :reactor
     
     def start
-      options[:api_version] ||= '1.4'
-      options[:host]        ||= '0.0.0.0'
-      options[:port]        ||= '35729'
+      options[:api_version]    ||= '1.4'
+      options[:host]           ||= '0.0.0.0'
+      options[:port]           ||= '35729'
+      options[:apply_js_live]  ||= true
+      options[:apply_css_live] ||= true
       
       @reactor = Reactor.new(options)
     end

@@ -4,11 +4,13 @@ describe Guard::LiveReload do
   subject { Guard::LiveReload.new }
   
   describe "start" do
-    it "should set reactor" do
+    it "should set reactor with default options" do
       Guard::LiveReload::Reactor.should_receive(:new).with(
-        :api_version => '1.4',
-        :host        => '0.0.0.0',
-        :port        => '35729'
+        :api_version    => '1.4',
+        :host           => '0.0.0.0',
+        :port           => '35729',
+        :apply_css_live => true,
+        :apply_js_live  => true
       )
       subject.start
     end
