@@ -18,12 +18,12 @@ Add guard definition to your Guardfile by running this command:
 
     guard init livereload
 
-Install {livereload Safari/Chrome extension}[http://github.com/mockko/livereload]
+Install {LiveReload Safari/Chrome extension}[http://github.com/mockko/livereload#readme]
 
 == Usage
 
 Please read {guard usage doc}[http://github.com/guard/guard#readme]
-and {livereload extension usage doc}[http://github.com/mockko/livereload]
+and {LiveReload extension usage doc}[http://github.com/mockko/livereload#readme]
 
 == Guardfile
 
