@@ -39,11 +39,13 @@ Please read {guard doc}[http://github.com/guard/guard#readme] for more info abou
 
 == Options
 
-LiveReload guard have three options (host, port, api_version):
+LiveReload guard have five options (host, port, api_version, apply_js_live and apply_css_live):
 
     guard 'livereload', :port => '35728' do
       ...
     end
+
+See {LiveReload configuration doc}[http://github.com/mockko/livereload#readme] for more info about those options.
 
 == Development
 
