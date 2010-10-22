@@ -14,7 +14,6 @@ namespace(:spec) do
                  rvm #{version};
                  echo "--------- version #{version} ----------\n";
                  bundle install;
-                 rake spec:prepare_fixtures
                  rake spec'
       BASH
     end
