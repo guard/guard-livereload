@@ -31,10 +31,10 @@ You can adapt your 'view' files like you want.
 Please read {guard doc}[http://github.com/guard/guard#readme] for more info about Guardfile DSL.
 
     guard 'livereload' do
-      watch('^app/.+\.(erb|haml)$')
-      watch('^app/helpers/.+\.rb$')
-      watch('^/public/.+\.(css|js|html)$')
-      watch('^config/locales/.+\.ym$')
+      watch('app/.+\.(erb|haml)$')
+      watch('app/helpers/.+\.rb$')
+      watch('public/.+\.(css|js|html)$')
+      watch('config/locales/.+\.yml$')
     end
 
 == Options
