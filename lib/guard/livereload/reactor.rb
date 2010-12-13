@@ -9,8 +9,8 @@ module Guard
       
       def initialize(options)
         @web_sockets = []
-        @options = options
-        @thread = start_threaded_reactor(options)
+        @options     = options
+        @thread      = start_threaded_reactor(options)
       end
       
       def stop
