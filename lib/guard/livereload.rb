@@ -14,11 +14,13 @@ module Guard
     
     def initialize(watchers = [], options = {})
       super
-      @options[:api_version]    = options[:api_version] || '1.4'
-      @options[:host]           = options[:host] || '0.0.0.0'
-      @options[:port]           = options[:port] || '35729'
-      @options[:apply_js_live]  = options[:apply_js_live].nil? ? true : options[:apply_js_live]
-      @options[:apply_css_live] = options[:apply_css_live].nil? ? true : options[:apply_css_live]
+      @options = {
+        :api_version => '1.4',
+        :host => '0.0.0.0',
+        :port => '35729',
+        :apply_js_live => true,
+        :apply_css_live => true
+      }.update(options)
     end
     
     def start
