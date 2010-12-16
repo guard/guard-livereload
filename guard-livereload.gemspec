@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "guard-livereload"
   
   s.add_dependency 'guard',        '>= 0.2.2'
-  s.add_dependency 'em-websocket', '~> 0.1.3'
+  s.add_dependency 'em-websocket', '~> 0.2.0'
   s.add_dependency 'json',         '~> 1.4.6'
   
   s.add_development_dependency 'bundler',     '~> 1.0.7'

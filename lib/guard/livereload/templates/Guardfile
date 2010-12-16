@@ -1,6 +1,6 @@
 guard 'livereload' do
-  watch('app/.+\.(erb|haml)$')
-  watch('app/helpers/.+\.rb$')
-  watch('public/.+\.(css|js|html)$')
-  watch('config/locales/.+\.yml$')
+  watch(%r{app/.+\.(erb|haml)$})
+  watch(%r{app/helpers/.+\.rb$})
+  watch(%r{public/.+\.(css|js|html)$})
+  watch(%r{config/locales/.+\.yml$})
 end
