@@ -32,7 +32,8 @@ module Guard
         Thread.new do
           EventMachine.run do
             UI.info "LiveReload #{options[:api_version]} is waiting for a browser to connect."
-            EventMachine::WebSocket.start(:host => options[:host], :port => options[:port]) do |ws|
+            EventMachine.start_server(options[:host], options[:port],
+                EventMachine::WebSocket::Connection, {}) do |ws|
               ws.onopen do
                 begin
                   UI.info "Browser connected."
