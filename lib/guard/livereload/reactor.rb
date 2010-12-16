@@ -20,7 +20,11 @@ module Guard
       def reload_browser(paths = [])
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
-          data = ['refresh', { :path => path, :apply_js_live => @options[:apply_js_live], :apply_css_live => @options[:apply_css_live] }].to_json
+          data = ['refresh', {
+            :path           => path,
+            :apply_js_live  => @options[:apply_js_live],
+            :apply_css_live => @options[:apply_css_live]
+          }].to_json
           UI.debug data
           @web_sockets.each { |ws| ws.send(data) }
         end
@@ -32,8 +36,7 @@ module Guard
         Thread.new do
           EventMachine.run do
             UI.info "LiveReload #{options[:api_version]} is waiting for a browser to connect."
-            EventMachine.start_server(options[:host], options[:port],
-                EventMachine::WebSocket::Connection, {}) do |ws|
+            EventMachine.start_server(options[:host], options[:port], EventMachine::WebSocket::Connection, {}) do |ws|
               ws.onopen do
                 begin
                   UI.info "Browser connected."
