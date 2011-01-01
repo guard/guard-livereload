@@ -47,7 +47,7 @@ LiveReload guard have 5 options that you can set like this:
 
 Available options:
 
-    :api_version => '1.3'    # default '1.4'
+    :api_version => '1.3'    # default '1.5'
     :host => '127.3.3.1'     # default '0.0.0.0'
     :port => '12345'         # default '35729'
     :apply_js_live => false  # default true
