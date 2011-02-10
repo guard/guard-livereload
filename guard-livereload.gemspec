@@ -18,9 +18,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'em-websocket', '~> 0.2.0'
   s.add_dependency 'json',         '~> 1.4.6'
   
-  s.add_development_dependency 'bundler',     '~> 1.0.7'
+  s.add_development_dependency 'bundler',     '~> 1.0.10'
   s.add_development_dependency 'guard-rspec', '~> 0.1.9'
-  s.add_development_dependency 'rspec',       '~> 2.3.0'
+  s.add_development_dependency 'rspec',       '~> 2.5.0'
   
   s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.rdoc]
   s.require_path = 'lib'
