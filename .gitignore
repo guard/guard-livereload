@@ -1,11 +1,1 @@
-pkg/*
-*.gem
-.bundle
-
-## MAC OS
-.DS_Store
-.Trashes
-.com.apple.timemachine.supported
-.fseventsd
-Desktop DB
-Desktop DF
+Gemfile.lock
