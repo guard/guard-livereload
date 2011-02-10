@@ -3,15 +3,15 @@ require 'guard/guard'
 
 module Guard
   class LiveReload < Guard
-    
+
     autoload :Reactor, 'guard/livereload/reactor'
-    
+
     attr_accessor :reactor
-    
+
     # =================
     # = Guard methods =
     # =================
-    
+
     def initialize(watchers = [], options = {})
       super
       @options = {
@@ -22,18 +22,18 @@ module Guard
         :apply_css_live => true
       }.update(options)
     end
-    
+
     def start
       @reactor = Reactor.new(@options)
     end
-    
+
     def stop
       reactor.stop
     end
-    
+
     def run_on_change(paths)
       reactor.reload_browser(paths)
     end
-    
+
   end
 end

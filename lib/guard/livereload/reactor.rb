@@ -4,19 +4,19 @@ require 'json'
 module Guard
   class LiveReload
     class Reactor
-      
+
       attr_reader :thread, :web_sockets
-      
+
       def initialize(options)
         @web_sockets = []
         @options     = options
         @thread      = start_threaded_reactor(options)
       end
-      
+
       def stop
         thread.kill
       end
-      
+
       def reload_browser(paths = [])
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
@@ -29,9 +29,9 @@ module Guard
           @web_sockets.each { |ws| ws.send(data) }
         end
       end
-      
+
     private
-      
+
       def start_threaded_reactor(options)
         Thread.new do
           EventMachine.run do
@@ -47,11 +47,11 @@ module Guard
                   UI.errror $!.backtrace
                 end
               end
-              
+
               ws.onmessage do |msg|
                 UI.info "Browser URL: #{msg}"
               end
-              
+
               ws.onclose do
                 @web_sockets.delete ws
                 UI.info "Browser disconnected."
@@ -60,7 +60,7 @@ module Guard
           end
         end
       end
-      
+
     end
   end
 end
