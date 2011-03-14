@@ -15,7 +15,7 @@ module Guard
     def initialize(watchers = [], options = {})
       super
       @options = {
-        :api_version => '1.5',
+        :api_version => '1.6',
         :host => '0.0.0.0',
         :port => '35729',
         :apply_js_live => true,

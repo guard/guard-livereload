@@ -5,9 +5,9 @@ describe Guard::LiveReload do
 
   describe 'options' do
     describe 'api_version' do
-      it "should be == '1.5' by default" do
+      it "should be == '1.6' by default" do
         subject = Guard::LiveReload.new([])
-        subject.options[:api_version].should == '1.5'
+        subject.options[:api_version].should == '1.6'
       end
 
       it "should be set to '1.3'" do
@@ -69,7 +69,7 @@ describe Guard::LiveReload do
     it "should create reactor with default options" do
       subject = Guard::LiveReload.new([])
       Guard::LiveReload::Reactor.should_receive(:new).with(
-        :api_version    => '1.5',
+        :api_version    => '1.6',
         :host           => '0.0.0.0',
         :port           => '35729',
         :apply_css_live => true,
