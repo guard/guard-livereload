@@ -13,7 +13,7 @@ describe Guard::LiveReload::Reactor do
       reactor = new_live_reactor
       paths.each do |path|
         reactor.web_sockets.each do |ws|
-          ws.should_receive(:send).with(['refresh', { :path => path, :apply_js_live => true, :apply_css_live => true }].to_json)
+          ws.should_receive(:send).with(['refresh', { :path => "#{Dir.pwd}/#{path}", :apply_js_live => true, :apply_css_live => true }].to_json)
         end
       end
       reactor.reload_browser(paths)
@@ -23,7 +23,7 @@ describe Guard::LiveReload::Reactor do
       reactor = new_live_reactor(:apply_css_live => false, :apply_js_live => false)
       paths.each do |path|
         reactor.web_sockets.each do |ws|
-          ws.should_receive(:send).with(['refresh', { :path => path, :apply_js_live => false, :apply_css_live => false }].to_json)
+          ws.should_receive(:send).with(['refresh', { :path => "#{Dir.pwd}/#{path}", :apply_js_live => false, :apply_css_live => false }].to_json)
         end
       end
       reactor.reload_browser(paths)

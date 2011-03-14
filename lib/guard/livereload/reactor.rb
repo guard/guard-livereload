@@ -21,7 +21,7 @@ module Guard
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
           data = ['refresh', {
-            :path           => path,
+            :path           => "#{Dir.pwd}/#{path}",
             :apply_js_live  => @options[:apply_js_live],
             :apply_css_live => @options[:apply_css_live]
           }].to_json
