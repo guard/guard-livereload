@@ -1,4 +1,5 @@
 = Guard::LiveReload
+http://travis-ci.org/guard/guard-livereload.png
 
 LiveReload guard allows to automatically reload your browser when 'view' files are modified.
 
