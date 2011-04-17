@@ -4,12 +4,12 @@ describe Guard::LiveReload::Reactor do
   let(:paths) { %w[stylesheets/layout.css stylesheets/style.css] }
 
   describe "#reload_browser(paths = [])" do
-    it "should display a message" do
+    it "displays a message" do
       Guard::UI.should_receive(:info).with("Reloading browser: stylesheets/layout.css stylesheets/style.css")
       new_live_reactor.reload_browser(paths)
     end
 
-    it "each web socket should receive send with data containing default options for each path modified" do
+    it "each web socket receives send with data containing default options for each path modified" do
       reactor = new_live_reactor
       paths.each do |path|
         reactor.web_sockets.each do |ws|
@@ -19,7 +19,7 @@ describe Guard::LiveReload::Reactor do
       reactor.reload_browser(paths)
     end
 
-    it "each web socket should receive send with data containing custom options for each path modified" do
+    it "each web socket receives send with data containing custom options for each path modified" do
       reactor = new_live_reactor(:apply_css_live => false, :apply_js_live => false)
       paths.each do |path|
         reactor.web_sockets.each do |ws|
