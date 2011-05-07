@@ -33,5 +33,5 @@ describe Guard::LiveReload::Reactor do
 end
 
 def new_live_reactor(options = {})
-  Guard::LiveReload::Reactor.new({ :api_version => '1.6', :host => '0.0.0.0', :port => '35729', :apply_js_live => true, :apply_css_live => true }.merge(options))
+  Guard::LiveReload::Reactor.new({ :api_version => '1.6', :host => '0.0.0.0', :port => '35729', :apply_js_live => true, :apply_css_live => true, :grace_period => 0 }.merge(options))
 end

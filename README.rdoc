@@ -39,7 +39,7 @@ Please read {Guard doc}[http://github.com/guard/guard#readme] for more info abou
 
 == Options
 
-LiveReload guard have 5 options that you can set like this:
+LiveReload guard has 6 options that you can set like this:
 
     guard 'livereload', :api_version => '1.4', :port => '35728' do
       ...
@@ -52,6 +52,7 @@ Available options:
     :port => '12345'         # default '35729'
     :apply_js_live => false  # default true
     :apply_css_live => false # default true
+    :grace_period => 0.5     # default 0 (seconds)
 
 See {LiveReload configuration doc}[http://github.com/mockko/livereload#readme] for more info about those options.
 
