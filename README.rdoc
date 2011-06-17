@@ -11,7 +11,7 @@ Install the gem:
 
     gem install guard-livereload
 
-Add it to your Gemfile (inside test group):
+Add it to your Gemfile (inside development group):
 
     gem 'guard-livereload'
 
