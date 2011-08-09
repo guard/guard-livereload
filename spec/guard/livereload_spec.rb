@@ -63,6 +63,18 @@ describe Guard::LiveReload do
         subject.options[:apply_css_live].should be_false
       end
     end
+
+    describe ":grace_period option" do
+      it "is 0 by default" do
+        subject = Guard::LiveReload.new([])
+        subject.options[:grace_period].should == 0
+      end
+
+      it "can be set to 0.5" do
+        subject = Guard::LiveReload.new([], { :grace_period => 0.5 })
+        subject.options[:grace_period].should == 0.5
+      end
+    end
   end
 
   describe "#start" do
@@ -73,19 +85,21 @@ describe Guard::LiveReload do
         :host           => '0.0.0.0',
         :port           => '35729',
         :apply_css_live => true,
-        :apply_js_live  => true
+        :apply_js_live  => true,
+        :grace_period   => 0
       )
       subject.start
     end
 
     it "creates reactor with given options" do
-      subject = Guard::LiveReload.new([], { :api_version => '1.3', :host => '127.3.3.1', :port => '12345', :apply_js_live => false, :apply_css_live => false })
+      subject = Guard::LiveReload.new([], { :api_version => '1.3', :host => '127.3.3.1', :port => '12345', :apply_js_live => false, :apply_css_live => false, :grace_period => 1 })
       Guard::LiveReload::Reactor.should_receive(:new).with(
         :api_version    => '1.3',
         :host           => '127.3.3.1',
         :port           => '12345',
         :apply_css_live => false,
-        :apply_js_live  => false
+        :apply_js_live  => false,
+        :grace_period   => 1
       )
       subject.start
     end
@@ -105,6 +119,15 @@ describe Guard::LiveReload do
       reactor = mock(Guard::LiveReload::Reactor)
       subject.stub(:reactor).and_return(reactor)
       reactor.should_receive(:reload_browser).with(['foo'])
+      subject.run_on_change(['foo'])
+    end
+
+    it "can wait 0.5 seconds before reloading the browser" do
+      reactor = mock(Guard::LiveReload::Reactor)
+      subject.stub(:reactor).and_return(reactor)
+      reactor.should_receive(:reload_browser).with(['foo'])
+      subject.should_receive(:sleep).with(0.5)
+      subject.options[:grace_period] = 0.5
       subject.run_on_change(['foo'])
     end
   end
