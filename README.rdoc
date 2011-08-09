@@ -21,6 +21,10 @@ Add guard definition to your Guardfile by running this command:
 
 Install {LiveReload Safari/Chrome extension}[http://github.com/mockko/livereload#readme]
 
+To optimize communication with the LiveReload extension, install the yajl-ruby to increase JSON performance:
+
+    gem install yajl-ruby
+
 == Usage
 
 Please read {Guard usage doc}[http://github.com/guard/guard#readme] and {LiveReload extension usage doc}[http://github.com/mockko/livereload#readme]
