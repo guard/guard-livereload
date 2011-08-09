@@ -1,5 +1,5 @@
 require 'em-websocket'
-require 'json'
+require 'multi_json'
 
 module Guard
   class LiveReload
@@ -20,11 +20,11 @@ module Guard
       def reload_browser(paths = [])
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
-          data = ['refresh', {
+          data = MultiJson.encode(['refresh', {
             :path           => "#{Dir.pwd}/#{path}",
             :apply_js_live  => @options[:apply_js_live],
             :apply_css_live => @options[:apply_css_live]
-          }].to_json
+          }])
           UI.debug data
           @web_sockets.each { |ws| ws.send(data) }
         end
