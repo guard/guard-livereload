@@ -6,8 +6,6 @@ module Guard
 
     autoload :Reactor, 'guard/livereload/reactor'
 
-    attr_accessor :reactor
-
     # =================
     # = Guard methods =
     # =================
@@ -35,6 +33,12 @@ module Guard
     def run_on_change(paths)
       sleep @options[:grace_period]
       reactor.reload_browser(paths)
+    end
+
+  private
+
+    def reactor
+      @reactor ||= Reactor.new(@options)
     end
 
   end
