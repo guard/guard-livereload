@@ -35,12 +35,12 @@ You can adapt your 'view' files like you want.
 Please read {Guard doc}[http://github.com/guard/guard#readme] for more info about Guardfile DSL.
 
     guard 'livereload' do
-      watch(%r{app/.+\.(erb|haml)})
-      watch(%r{app/helpers/.+\.rb})
-      watch(%r{(public/|app/assets).+\.(css|js|html)})
-      watch(%r{(app/assets/.+\.css)\.scss}) { |m| m[1] }
-      watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
-      watch(%r{config/locales/.+\.yml})
+      watch(%r{app/.*/[^.][^/]+\.(erb|haml|slim)})
+      watch(%r{app/helpers/.*/[^.][^/]+\.rb})
+      watch(%r{public/(.*/[^.][^/]+\.(css|js|html))}) {|m| m[1] }
+      watch(%r{app/assets/(.*/[^.][^/]+\.css)(\.s[ac]ss)?}) { |m| "/assets/#{m[1]}" }
+      watch(%r{app/assets/(.*/[^.][^/]+\.js)(\.coffee)?}) { |m| "/assets/#{m[1]}" }
+      watch(%r{config/locales/[^.].+\.yml})
     end
 
 == Options
