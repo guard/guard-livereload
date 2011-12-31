@@ -3,7 +3,7 @@ require 'guard/guard'
 
 module Guard
   class LiveReload < Guard
-
+    attr_accessor :reactor
     autoload :Reactor, 'guard/livereload/reactor'
 
     # =================
@@ -33,12 +33,6 @@ module Guard
     def run_on_change(paths)
       sleep @options[:grace_period]
       reactor.reload_browser(paths)
-    end
-
-  private
-
-    def reactor
-      @reactor ||= Reactor.new(@options)
     end
 
   end
