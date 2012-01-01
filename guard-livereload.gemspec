@@ -23,6 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec',       '~> 2.5'
   s.add_development_dependency 'guard-rspec', '~> 0.2'
 
-  s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.rdoc]
+  s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.md]
   s.require_path = 'lib'
 end
