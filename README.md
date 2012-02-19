@@ -4,7 +4,7 @@ LiveReload guard allows to automatically reload your browser when 'view' files a
 
 ## Install
 
-Please be sure to have [Guard](https://github.com/guard/guard) installed before continue.
+Please be sure to have [Guard](https://github.com/guard/guard) installed before continuing.
 
 Install the gem:
 
