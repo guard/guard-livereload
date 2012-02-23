@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'guard',        '>= 0.10.0'
   s.add_dependency 'em-websocket', '>= 0.2.0'
-  s.add_dependency 'multi_json',   '~> 1.0.3'
+  s.add_dependency 'multi_json',   '~> 1.0'
 
   s.add_development_dependency 'bundler',     '~> 1.0'
   s.add_development_dependency 'rspec',       '~> 2.5'
