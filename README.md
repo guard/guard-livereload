@@ -56,7 +56,7 @@ guard 'livereload' do
 end
 ```
 
-== Options
+## Options
 
 LiveReload guard has 6 options that you can set like this:
 
