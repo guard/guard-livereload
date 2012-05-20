@@ -114,12 +114,12 @@ describe Guard::LiveReload do
     end
   end
 
-  describe "#run_on_change" do
+  describe "#run_on_changes" do
     it "reloads browser" do
       reactor = mock(Guard::LiveReload::Reactor)
       subject.stub(:reactor).and_return(reactor)
       reactor.should_receive(:reload_browser).with(['foo'])
-      subject.run_on_change(['foo'])
+      subject.run_on_changes(['foo'])
     end
 
     it "can wait 0.5 seconds before reloading the browser" do
@@ -128,7 +128,7 @@ describe Guard::LiveReload do
       reactor.should_receive(:reload_browser).with(['foo'])
       subject.should_receive(:sleep).with(0.5)
       subject.options[:grace_period] = 0.5
-      subject.run_on_change(['foo'])
+      subject.run_on_changes(['foo'])
     end
   end
 end
