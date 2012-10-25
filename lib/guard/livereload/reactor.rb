@@ -55,7 +55,7 @@ module Guard
               end
 
               ws.onmessage do |msg|
-                UI.info "Browser URL: #{msg}"
+                UI.info "Browser URL: #{msg}"  if msg =~ /^(https?|file):/
               end
 
               ws.onclose do
