@@ -47,12 +47,12 @@ Please read [Guard doc](http://github.com/guard/guard#readme) for more info abou
 
 ``` ruby
 guard 'livereload' do
-  watch(%r{app/views/.+\.(erb|haml|slim)$})
+  watch(%r{app/views/.+\.(erb|haml|slim)})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{public/.+\.(css|js|html)})
   watch(%r{config/locales/.+\.yml})
   # Rails Assets Pipeline
-  watch(%r{(app|vendor)(/assets/\w+/(.+\.(s[ac]ss|coffee|css|js|html))).*}) { |m| "/assets/#{m[3]}" }
+  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
 end
 ```
 
