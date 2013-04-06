@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'rspec'
 require 'guard/livereload'
 ENV["GUARD_ENV"] = 'test'
