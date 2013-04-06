@@ -2,6 +2,10 @@
 
 LiveReload guard allows to automatically reload your browser when 'view' files are modified.
 
+## Support
+
+For any support question/issue related to `livereload` please ask on support@livereload.com.
+
 ## Install
 
 Please be sure to have [Guard](https://github.com/guard/guard) installed before continuing.
