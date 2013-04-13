@@ -1,5 +1,5 @@
-require 'em-websocket'
 require 'multi_json'
+require 'guard/livereload/http-ws'
 
 module Guard
   class LiveReload
@@ -20,11 +20,11 @@ module Guard
       def reload_browser(paths = [])
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
-          data = MultiJson.encode(['refresh', {
+          data = MultiJson.encode({
+            :command        => 'reload',
             :path           => "#{Dir.pwd}/#{path}",
-            :apply_js_live  => @options[:apply_js_live],
-            :apply_css_live => @options[:apply_css_live]
-          }])
+            :liveCSS => @options[:apply_css_live]
+          })
           UI.debug data
           @web_sockets.each { |ws| ws.send(data) }
         end
@@ -35,12 +35,19 @@ module Guard
       def start_threaded_reactor(options)
         Thread.new do
           EventMachine.run do
-            UI.info "LiveReload #{options[:api_version]} is waiting for a browser to connect."
-            EventMachine.start_server(options[:host], options[:port], EventMachine::WebSocket::Connection, {}) do |ws|
+            UI.info "LiveReload is waiting for a browser to connect."
+            EventMachine.start_server(options[:host], options[:port], HTTP_Websocket, {}) do |ws|
               ws.onopen do
                 begin
                   UI.info "Browser connected."
-                  ws.send "!!ver:#{options[:api_version]}"
+                  ws.send MultiJson.encode({
+                    :command => 'hello',
+                    :protocols =>
+                      [
+                        'http://livereload.com/protocols/official-7',
+                      ],
+                    :serverName => 'guard-livereload'
+                  })
                   @web_sockets << ws
                 rescue
                   UI.errror $!
@@ -49,7 +56,10 @@ module Guard
               end
 
               ws.onmessage do |msg|
-                UI.info "Browser URL: #{msg}"  if msg =~ /^(https?|file):/
+                msg = MultiJson.decode(msg)
+                if msg['command'] == 'url'
+                  UI.info "Browser URL: #{msg['url']}"
+                end
               end
 
               ws.onclose do
