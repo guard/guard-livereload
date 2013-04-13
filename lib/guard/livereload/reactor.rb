@@ -20,13 +20,16 @@ module Guard
       def reload_browser(paths = [])
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
-          data = MultiJson.encode({
+          data = {
             :command        => 'reload',
             :path           => "#{Dir.pwd}/#{path}",
             :liveCSS => @options[:apply_css_live]
-          })
+          }
+          if @options[:overrideURL] && File.exist?(path)
+            data[:overrideURL] = '/' + path
+          end
           UI.debug data
-          @web_sockets.each { |ws| ws.send(data) }
+          @web_sockets.each { |ws| ws.send(MultiJson.encode(data)) }
         end
       end
 
