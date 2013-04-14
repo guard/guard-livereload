@@ -1,9 +1,10 @@
 require 'eventmachine'
 require 'em-websocket'
 require "http/parser"
+
 module Guard
   class LiveReload
-    class HTTP_Websocket < EventMachine::WebSocket::Connection
+    class WebSocket < EventMachine::WebSocket::Connection
       def dispatch data
         parser = Http::Parser.new
         parser << data
@@ -22,21 +23,15 @@ module Guard
       def serve_file path
         UI.debug "Serving file #{path}"
         content_type = case File.extname(path)
-          when '.css'
-            'text/css'
-          when '.js'
-            'application/ecmascript'
-          when '.gif'
-            'image/gif'
-          when '.jpeg', '.jpg'
-            'image/jpeg'
-          when '.png'
-            'image/png'
-          else
-            'text/plain'
+        when '.css' then 'text/css'
+        when '.js' then 'application/ecmascript'
+        when '.gif' then 'image/gif'
+        when '.jpeg', '.jpg' then 'image/jpeg'
+        when '.png' then 'image/png'
+        else; 'text/plain'
         end
         send_data "HTTP/1.1 200 OK\r\nContent-Type: #{content_type}\r\nContent-Length: #{File.size path}\r\n\r\n"
-        stream_file_data(path).callback{ close_connection_after_writing }
+        stream_file_data(path).callback { close_connection_after_writing }
       end
 
     end

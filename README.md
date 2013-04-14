@@ -32,14 +32,6 @@ $ guard init livereload
 
 Use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install [LiveReload Safari/Chrome extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)
 
-### Optional
-
-To optimize communication with the LiveReload extension, install the yajl-ruby to increase JSON performance:
-
-``` bash
-$ gem install yajl-ruby
-```
-
 ## Usage
 
 Please read [Guard usage doc](http://github.com/guard/guard#readme) and [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme) or [LiveReload extension usage doc](http://github.com/mockko/livereload#readme)
@@ -65,7 +57,7 @@ end
 LiveReload guard has 6 options that you can set like this:
 
 ``` ruby
-guard 'livereload', :api_version => '1.4', :port => '35728' do
+guard 'livereload' do
   # ...
 end
 ```
@@ -73,11 +65,10 @@ end
 Available options:
 
 ``` ruby
-:api_version => '1.4'    # default '1.6'
 :host => '127.3.3.1'     # default '0.0.0.0'
 :port => '12345'         # default '35729'
-:apply_js_live => false  # default true
 :apply_css_live => false # default true
+:override_url => false   # default false
 :grace_period => 0.5     # default 0 (seconds)
 ```
 

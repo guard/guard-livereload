@@ -1,11 +1,9 @@
 require 'multi_json'
-require 'guard/livereload/http-ws'
 
 module Guard
   class LiveReload
     class Reactor
-
-      attr_reader :thread, :web_sockets
+      attr_reader :web_sockets, :thread, :options
 
       def initialize(options)
         @web_sockets = []
@@ -21,15 +19,15 @@ module Guard
         UI.info "Reloading browser: #{paths.join(' ')}"
         paths.each do |path|
           data = {
-            :command        => 'reload',
-            :path           => "#{Dir.pwd}/#{path}",
-            :liveCSS => @options[:apply_css_live]
+            :command  => 'reload',
+            :path     => "#{Dir.pwd}/#{path}",
+            :liveCSS  => @options[:apply_css_live]
           }
-          if @options[:overrideURL] && File.exist?(path)
+          if options[:override_url] && File.exist?(path)
             data[:overrideURL] = '/' + path
           end
           UI.debug data
-          @web_sockets.each { |ws| ws.send(MultiJson.encode(data)) }
+          web_sockets.each { |ws| ws.send(MultiJson.encode(data)) }
         end
       end
 
@@ -39,16 +37,13 @@ module Guard
         Thread.new do
           EventMachine.run do
             UI.info "LiveReload is waiting for a browser to connect."
-            EventMachine.start_server(options[:host], options[:port], HTTP_Websocket, {}) do |ws|
+            EventMachine.start_server(options[:host], options[:port], WebSocket, {}) do |ws|
               ws.onopen do
                 begin
                   UI.info "Browser connected."
                   ws.send MultiJson.encode({
-                    :command => 'hello',
-                    :protocols =>
-                      [
-                        'http://livereload.com/protocols/official-7',
-                      ],
+                    :command    => 'hello',
+                    :protocols  => ['http://livereload.com/protocols/official-7'],
                     :serverName => 'guard-livereload'
                   })
                   @web_sockets << ws
@@ -66,7 +61,7 @@ module Guard
               end
 
               ws.onclose do
-                @web_sockets.delete ws
+                @web_sockets.delete(ws)
                 UI.info "Browser disconnected."
               end
             end
