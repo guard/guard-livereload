@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rspec'
 
-  s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.md]
+  s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.md js/livereload.js]
   s.require_path = 'lib'
 end
