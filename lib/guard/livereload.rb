@@ -16,7 +16,6 @@ module Guard
       super
       @options = {
         :host => '0.0.0.0',
-        :port => '35729',
         :apply_css_live => true,
         :override_url => false,
         :grace_period => 0

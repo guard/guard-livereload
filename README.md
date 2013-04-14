@@ -66,7 +66,6 @@ Available options:
 
 ``` ruby
 :host => '127.3.3.1'     # default '0.0.0.0'
-:port => '12345'         # default '35729'
 :apply_css_live => false # default true
 :override_url => false   # default false
 :grace_period => 0.5     # default 0 (seconds)
