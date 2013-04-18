@@ -35,6 +35,7 @@ module Guard
 
       def start_threaded_reactor(options)
         Thread.new do
+          EventMachine.epoll
           EventMachine.run do
             UI.info "LiveReload is waiting for a browser to connect."
             EventMachine.start_server(options[:host], 35729, WebSocket, {}) do |ws|
