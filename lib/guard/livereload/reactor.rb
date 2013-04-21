@@ -38,7 +38,7 @@ module Guard
           EventMachine.epoll
           EventMachine.run do
             UI.info "LiveReload is waiting for a browser to connect."
-            EventMachine.start_server(options[:host], 35729, WebSocket, {}) do |ws|
+            EventMachine.start_server(options[:host], options[:port], WebSocket, {}) do |ws|
               ws.onopen do
                 begin
                   UI.info "Browser connected."

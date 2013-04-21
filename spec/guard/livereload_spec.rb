@@ -16,6 +16,18 @@ describe Guard::LiveReload do
       end
     end
 
+    describe ":port option" do
+      it "is '35729' by default" do
+        subject = Guard::LiveReload.new([])
+        subject.options[:port].should == '35729'
+      end
+
+      it "can be set to '12345'" do
+        subject = Guard::LiveReload.new([], { :port => '12345' })
+        subject.options[:port].should == '12345'
+      end
+    end
+
     describe ":apply_css_live option" do
       it "is true by default" do
         subject = Guard::LiveReload.new([])
@@ -58,6 +70,7 @@ describe Guard::LiveReload do
       subject = Guard::LiveReload.new([])
       Guard::LiveReload::Reactor.should_receive(:new).with(
         :host           => '0.0.0.0',
+        :port           => '35729',
         :apply_css_live => true,
         :override_url   => false,
         :grace_period   => 0
@@ -66,10 +79,11 @@ describe Guard::LiveReload do
     end
 
     it "creates reactor with given options" do
-      subject = Guard::LiveReload.new([], { :api_version => '1.3', :host => '127.3.3.1', :apply_css_live => false, :override_url => true, :grace_period => 1 })
+      subject = Guard::LiveReload.new([], { :api_version => '1.3', :host => '127.3.3.1', :port => '12345', :apply_css_live => false, :override_url => true, :grace_period => 1 })
       Guard::LiveReload::Reactor.should_receive(:new).with(
         :api_version    => '1.3',
         :host           => '127.3.3.1',
+        :port           => '12345',
         :apply_css_live => false,
         :override_url   => true,
         :grace_period   => 1
