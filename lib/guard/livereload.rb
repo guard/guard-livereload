@@ -1,16 +1,12 @@
 require 'guard'
-require 'guard/guard'
+require 'guard/plugin'
 
 module Guard
-  class LiveReload < Guard
+  class LiveReload < Plugin
     require 'guard/livereload/websocket'
     require 'guard/livereload/reactor'
 
     attr_accessor :reactor, :options
-
-    # =================
-    # = Guard methods =
-    # =================
 
     def initialize(options = {})
       super
