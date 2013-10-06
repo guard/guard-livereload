@@ -1,27 +1,27 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'guard/livereload/version'
 
 Gem::Specification.new do |s|
-  s.name        = "guard-livereload"
-  s.version     = Guard::LiveReloadVersion::VERSION
-  s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Thibaud Guillaume-Gentil']
-  s.email       = ['thibaud@thibaud.me']
-  s.homepage    = 'http://rubygems.org/gems/guard-livereload'
-  s.summary     = 'Guard gem for livereload'
-  s.description = "Guard::LiveReload automatically reloads your browser when 'view' files are modified."
+  s.name         = "guard-livereload"
+  s.version      = Guard::LiveReloadVersion::VERSION
+  s.author       = 'Thibaud Guillaume-Gentil'
+  s.email        = 'thibaud@thibaud.me'
+  s.summary      = 'Guard plugin for livereload'
+  s.description  = "Guard::LiveReload automatically reloads your browser when 'view' files are modified."
+  s.homepage     = 'https://rubygems.org/gems/guard-livereload'
+  s.license      = "MIT"
 
-  s.required_rubygems_version = '>= 1.3.6'
-  s.rubyforge_project         = "guard-livereload"
-
-  s.add_dependency 'guard',        '>= 1.8.0'
-  s.add_dependency 'em-websocket', '>= 0.5.0'
-  s.add_dependency 'multi_json',   '~> 1.7'
-
-  s.add_development_dependency 'bundler'
-  s.add_development_dependency 'rspec'
-
-  s.files        = Dir.glob('{lib}/**/*') + %w[LICENSE README.md js/livereload.js]
+  s.files        = `git ls-files`.split($/)
+  s.test_files   = s.files.grep(%r{^spec/})
   s.require_path = 'lib'
+
+  s.add_dependency 'guard',        '~> 2.0'
+  s.add_dependency 'em-websocket', '~> 0.5'
+  s.add_dependency 'multi_json',   '~> 1.8'
+
+  s.add_development_dependency 'bundler', '>= 1.3.5'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rspec'
 end

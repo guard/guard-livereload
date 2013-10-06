@@ -12,15 +12,15 @@ module Guard
     # = Guard methods =
     # =================
 
-    def initialize(watchers = [], options = {})
+    def initialize(options = {})
       super
       @options = {
-        :host => '0.0.0.0',
-        :port => '35729',
-        :apply_css_live => true,
-        :override_url => false,
-        :grace_period => 0
-      }.update(options)
+        host:           '0.0.0.0',
+        port:           '35729',
+        apply_css_live: true,
+        override_url:   false,
+        grace_period:   0
+      }.merge(options)
     end
 
     def start

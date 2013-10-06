@@ -1,4 +1,6 @@
-# Guard::LiveReload [![Gem Version](https://badge.fury.io/rb/guard-livereload.png)](http://badge.fury.io/rb/guard-livereload) [![Build Status](https://travis-ci.org/guard/guard-livereload.png?branch=master)](http://travis-ci.org/guard/guard-livereload) [![Dependency Status](https://gemnasium.com/guard/guard-livereload.png)](https://gemnasium.com/guard/guard-livereload) [![Code Climate](https://codeclimate.com/github/guard/guard-livereload.png)](https://codeclimate.com/github/guard/guard-livereload) [![Coverage Status](https://coveralls.io/repos/guard/guard-livereload/badge.png?branch=master)](https://coveralls.io/r/guard/guard-livereload)
+# Guard::LiveReload
+
+[![Gem Version](https://badge.fury.io/rb/guard-livereload.png)](http://badge.fury.io/rb/guard-livereload) [![Build Status](https://travis-ci.org/guard/guard-livereload.png?branch=master)](http://travis-ci.org/guard/guard-livereload) [![Dependency Status](https://gemnasium.com/guard/guard-livereload.png)](https://gemnasium.com/guard/guard-livereload) [![Code Climate](https://codeclimate.com/github/guard/guard-livereload.png)](https://codeclimate.com/github/guard/guard-livereload) [![Coverage Status](https://coveralls.io/repos/guard/guard-livereload/badge.png?branch=master)](https://coveralls.io/r/guard/guard-livereload)
 
 LiveReload guard allows to automatically reload your browser when 'view' files are modified.
 
@@ -34,12 +36,12 @@ Use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install [
 
 ## Usage
 
-Please read [Guard usage doc](http://github.com/guard/guard#readme) and [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme) or [LiveReload extension usage doc](http://github.com/mockko/livereload#readme)
+Please read [Guard usage doc](https://github.com/guard/guard#readme) and [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme) or [LiveReload extension usage doc](http://github.com/mockko/livereload#readme)
 
 ## Guardfile
 
 You can adapt your 'view' files like you want.
-Please read [Guard doc](http://github.com/guard/guard#readme) for more info about Guardfile DSL.
+Please read [Guard doc](https://github.com/guard/guard#readme) for more info about Guardfile DSL.
 
 ``` ruby
 guard 'livereload' do
@@ -65,14 +67,14 @@ end
 Available options:
 
 ``` ruby
-:host => '127.3.3.1'     # default '0.0.0.0'
-:port => '12345'         # default '35729'
-:apply_css_live => false # default true
-:override_url => false   # default false
-:grace_period => 0.5     # default 0 (seconds)
+host: '127.3.3.1'     # default '0.0.0.0'
+port: '12345'         # default '35729'
+apply_css_live: false # default true
+override_url: false   # default false
+grace_period: 0.5     # default 0 (seconds)
 ```
 
-See [LiveReload configuration doc](http://github.com/mockko/livereload#readme) for more info about those options.
+See [LiveReload configuration doc](https://github.com/mockko/livereload#readme) for more info about those options.
 
 ## Development
 
