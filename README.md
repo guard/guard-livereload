@@ -22,7 +22,7 @@ Add it to your Gemfile (inside development group):
 
 ``` ruby
 group :development do
-  gem 'guard-livereload'
+  gem 'guard-livereload', require: false
 end
 ```
 
