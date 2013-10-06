@@ -41,36 +41,36 @@ module Guard
       def _start_reactor
         EventMachine.epoll
         EventMachine.run do
-          UI.info "LiveReload is waiting for a browser to connect."
-          EventMachine.start_server(options[:host], options[:port], WebSocket) do |ws|
-            ws.onopen &_on_open
-            ws.onmessage &_on_message
-            ws.onmessage &_on_close
+          EventMachine.start_server(options[:host], options[:port], WebSocket, {}) do |ws|
+            ws.onopen    { _connect(ws) }
+            ws.onclose   { _disconnect(ws) }
+            ws.onmessage { |msg| _print_message(msg) }
           end
+          UI.info "LiveReload is waiting for a browser to connect."
         end
       end
 
-      def _on_open
+      def _connect(ws)
         UI.info "Browser connected."
-        self.send MultiJson.encode(
+        ws.send MultiJson.encode(
           command:    'hello',
           protocols:  ['http://livereload.com/protocols/official-7'],
           serverName: 'guard-livereload'
         )
-        @web_sockets << self
+        @web_sockets << ws
       rescue
-        UI.errror $!
-        UI.errror $!.backtrace
+        UI.error $!
+        UI.error $!.backtrace
       end
 
-      def _on_message(message)
-        message = MultiJson.decode(message)
-        UI.info"Browser URL: #{message['url']}" if message['command'] == 'url'
-      end
-
-      def _on_close
+      def _disconnect(ws)
         UI.info "Browser disconnected."
-        @web_sockets.delete(self)
+        @web_sockets.delete(ws)
+      end
+
+      def _print_message(message)
+        message = MultiJson.decode(message)
+        UI.info "Browser URL: #{message['url']}" if message['command'] == 'url'
       end
 
     end
