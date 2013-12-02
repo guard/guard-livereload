@@ -100,17 +100,17 @@ describe Guard::LiveReload do
     end
   end
 
-  describe "#run_on_changes" do
+  describe "#run_on_modifications" do
     it "reloads browser" do
       expect(reactor).to receive(:reload_browser).with(['foo'])
-      plugin.run_on_changes(['foo'])
+      plugin.run_on_modifications(['foo'])
     end
 
     it "can wait 0.5 seconds before reloading the browser" do
       expect(reactor).to receive(:reload_browser).with(['foo'])
       expect(plugin).to receive(:sleep).with(0.5)
       plugin.options[:grace_period] = 0.5
-      plugin.run_on_changes(['foo'])
+      plugin.run_on_modifications(['foo'])
     end
   end
 end

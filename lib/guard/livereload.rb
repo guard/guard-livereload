@@ -27,7 +27,7 @@ module Guard
       reactor.stop
     end
 
-    def run_on_changes(paths)
+    def run_on_modifications(paths)
       sleep options[:grace_period]
       reactor.reload_browser(paths)
     end
