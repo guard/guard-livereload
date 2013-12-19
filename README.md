@@ -36,7 +36,7 @@ Use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install [
 
 ## Usage
 
-Please read [Guard usage doc](https://github.com/guard/guard#readme) and [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme) or [LiveReload extension usage doc](http://github.com/mockko/livereload#readme)
+Please read [Guard usage doc](https://github.com/guard/guard#readme) and [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme) or [LiveReload extension usage doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x
 
 ## Guardfile
 
@@ -74,7 +74,7 @@ override_url: false   # default false
 grace_period: 0.5     # default 0 (seconds)
 ```
 
-See [LiveReload configuration doc](https://github.com/mockko/livereload#readme) for more info about those options.
+See [LiveReload configuration doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x for more info about those options.
 
 ## Development
 
