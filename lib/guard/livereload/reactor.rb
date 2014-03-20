@@ -3,12 +3,13 @@ require 'multi_json'
 module Guard
   class LiveReload
     class Reactor
-      attr_reader :web_sockets, :thread, :options
+      attr_reader :web_sockets, :thread, :options, :connections_count
 
       def initialize(options)
-        @web_sockets = []
-        @options     = options
-        @thread      = Thread.new { _start_reactor }
+        @web_sockets       = []
+        @options           = options
+        @thread            = Thread.new { _start_reactor }
+        @connections_count = 0
       end
 
       def stop
@@ -51,7 +52,9 @@ module Guard
       end
 
       def _connect(ws)
-        UI.info "Browser connected."
+        @connections_count += 1
+        UI.info "Browser connected." if connections_count == 1
+
         ws.send MultiJson.encode(
           command:    'hello',
           protocols:  ['http://livereload.com/protocols/official-7'],
@@ -64,7 +67,6 @@ module Guard
       end
 
       def _disconnect(ws)
-        UI.info "Browser disconnected."
         @web_sockets.delete(ws)
       end
 
