@@ -31,6 +31,23 @@ describe Guard::LiveReload::Reactor do
     end
   end
 
+  describe "#_connect(ws)" do
+    let(:ws)      { double.as_null_object }
+    let(:reactor) { new_live_reactor }
+
+    it "displays a message once" do
+      expect(Guard::UI).to receive(:info).with("Browser connected.").once
+      reactor.send(:_connect, ws)
+      reactor.send(:_connect, ws)
+    end
+
+    it "increments the connection count" do
+      expect {
+        reactor.send(:_connect, ws)
+      }.to change { reactor.connections_count }.from(0).to 1
+    end
+  end
+
 end
 
 def new_live_reactor(options = {})
