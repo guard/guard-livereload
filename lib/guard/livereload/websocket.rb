@@ -10,13 +10,14 @@ module Guard
       def dispatch(data)
         parser = Http::Parser.new
         parser << data
-        request_path = URI.parse(parser.request_url).path
+        # prepend with '.' to make request url usable as a file path
+        request_path = '.' + URI.parse(parser.request_url).path
         if parser.http_method != 'GET' || parser.upgrade?
           super #pass the request to websocket
-        elsif request_path == '/livereload.js'
+        elsif request_path == './livereload.js'
           _serve_file(_livereload_js_file)
-        elsif File.exist?(request_path[1..-1])
-          _serve_file(request_path[1..-1]) # Strip leading slash
+        elsif File.readable?(request_path) && !File.directory?(request_path)
+          _serve_file(request_path)
         else
           send_data("HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 13\r\n\r\n404 Not Found")
           close_connection_after_writing
