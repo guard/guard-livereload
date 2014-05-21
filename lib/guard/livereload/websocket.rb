@@ -12,6 +12,7 @@ module Guard
         parser << data
         # prepend with '.' to make request url usable as a file path
         request_path = '.' + URI.parse(parser.request_url).path
+        request_path += '/index.html' if File.directory? request_path
         if parser.http_method != 'GET' || parser.upgrade?
           super #pass the request to websocket
         elsif request_path == './livereload.js'
@@ -33,7 +34,8 @@ module Guard
       end
 
       def _content_type(path)
-        case File.extname(path)
+        case File.extname(path).downcase
+        when '.html', '.htm' then 'text/html'
         when '.css' then 'text/css'
         when '.js' then 'application/ecmascript'
         when '.gif' then 'image/gif'
