@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Guard::LiveReload::Reactor do
   let(:paths) { %w[stylesheets/layout.css stylesheets/style.css] }
-  before { Guard::UI.stub(:info) }
+  before { allow(Guard::UI).to receive(:info) }
 
   describe "#reload_browser(paths = [])" do
     it "displays a message" do
