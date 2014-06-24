@@ -67,6 +67,7 @@ end
 Available options:
 
 ``` ruby
+notify: true          # default false
 host: '127.3.3.1'     # default '0.0.0.0'
 port: '12345'         # default '35729'
 apply_css_live: false # default true
@@ -74,7 +75,8 @@ override_url: false   # default false
 grace_period: 0.5     # default 0 (seconds)
 ```
 
-See [LiveReload configuration doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x for more info about those options.
+`notify` uses Guard's [system notifications](https://github.com/guard/guard/wiki/System-notifications).
+See [LiveReload configuration doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x for more info about other options.
 
 ## Development
 

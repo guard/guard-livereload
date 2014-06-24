@@ -17,7 +17,12 @@ module Guard
       end
 
       def reload_browser(paths = [])
-        UI.info "Reloading browser: #{paths.join(' ')}"
+        msg = "Reloading browser: #{paths.join(' ')}"
+        UI.info msg
+        if options[:notify]
+          Notifier.notify(msg, title: 'Reloading browser', image: :success)
+        end
+
         paths.each do |path|
           data = _data(path)
           UI.debug(data)
