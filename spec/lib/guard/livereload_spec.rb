@@ -33,24 +33,24 @@ describe Guard::LiveReload do
     describe ":apply_css_live option" do
       it "is true by default" do
         plugin = Guard::LiveReload.new
-        expect(plugin.options[:apply_css_live]).to be_true
+        expect(plugin.options[:apply_css_live]).to be_truthy
       end
 
       it "can be set to false" do
         plugin = Guard::LiveReload.new(apply_css_live: false)
-        expect(plugin.options[:apply_css_live]).to be_false
+        expect(plugin.options[:apply_css_live]).to be_falsey
       end
     end
 
     describe ":override_url option" do
       it "is false by default" do
         plugin = Guard::LiveReload.new
-        expect(plugin.options[:override_url]).to be_false
+        expect(plugin.options[:override_url]).to be_falsey
       end
 
       it "can be set to false" do
         plugin = Guard::LiveReload.new(override_url: true)
-        expect(plugin.options[:override_url]).to be_true
+        expect(plugin.options[:override_url]).to be_truthy
       end
     end
 
