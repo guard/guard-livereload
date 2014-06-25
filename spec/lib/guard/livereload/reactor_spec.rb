@@ -6,8 +6,20 @@ describe Guard::LiveReload::Reactor do
 
   describe "#reload_browser(paths = [])" do
     it "displays a message" do
-      expect(Guard::UI).to receive(:info).with("Reloading browser: stylesheets/layout.css stylesheets/style.css")
+      expect(Guard::UI).to receive(:info).
+        with('Reloading browser: stylesheets/layout.css stylesheets/style.css')
       new_live_reactor.reload_browser(paths)
+    end
+
+    it 'by default does not send notification' do
+      expect(::Guard::Notifier).to_not receive(:notify)
+      new_live_reactor.reload_browser(paths)
+    end
+
+    it 'optionally pushes notification' do
+      expect(::Guard::Notifier).to receive(:notify).
+        with(kind_of(String), have_key(:title))
+      new_live_reactor(notify: true).reload_browser(paths)
     end
 
     it "each web socket receives send with data containing default options for each path modified" do
