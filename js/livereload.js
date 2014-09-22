@@ -598,7 +598,7 @@
          _results = [];
          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
            link = _ref[_i];
-           if (link.rel === 'stylesheet' && !link.__LiveReload_pendingRemoval) {
+           if (link.rel.toLowerCase() === 'stylesheet' && !link.__LiveReload_pendingRemoval) {
              _results.push(link);
            }
          }
@@ -1005,7 +1005,7 @@
        _results = [];
        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
          link = _ref[_i];
-         if (link.href && link.rel === 'stylesheet/less' || (link.rel.match(/stylesheet/) && link.type.match(/^text\/(x-)?less$/))) {
+         if (link.href && link.rel.toLowerCase() === 'stylesheet/less' || (link.rel.match(/stylesheet/i) && link.type.match(/^text\/(x-)?less$/i))) {
            _results.push(link);
          }
        }
