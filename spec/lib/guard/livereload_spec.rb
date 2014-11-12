@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Guard::LiveReload do
   let(:plugin) { Guard::LiveReload.new }
   let(:reactor) { double(Guard::LiveReload::Reactor) }
-  before { plugin.stub(:reactor) { reactor } }
+  before { allow(plugin).to receive(:reactor) { reactor } }
 
   describe "#initialize" do
     describe ":host option" do
