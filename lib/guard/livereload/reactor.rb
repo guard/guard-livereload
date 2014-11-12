@@ -1,7 +1,7 @@
 require 'multi_json'
 
 module Guard
-  class LiveReload
+  class LiveReload < Plugin
     class Reactor
       attr_reader :web_sockets, :thread, :options, :connections_count
 
