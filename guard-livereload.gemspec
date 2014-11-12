@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files   = s.files.grep(%r{^spec/})
   s.require_path = 'lib'
 
-  s.add_dependency 'guard',        '~> 2.0'
+  s.add_dependency 'guard',        '~> 2.8'
   s.add_dependency 'em-websocket', '~> 0.5'
   s.add_dependency 'multi_json',   '~> 1.8'
 
