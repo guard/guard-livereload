@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Guard::LiveReload::Reactor do
+RSpec.describe Guard::LiveReload::Reactor do
   let(:paths) { %w[stylesheets/layout.css stylesheets/style.css] }
 
   before do

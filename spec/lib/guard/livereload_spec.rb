@@ -1,8 +1,6 @@
-require 'spec_helper'
-
 require "guard/compat/test/helper"
 
-describe Guard::LiveReload do
+RSpec.describe Guard::LiveReload do
   let(:plugin) { Guard::LiveReload.new }
   let(:reactor) { double(Guard::LiveReload::Reactor) }
   before { allow(plugin).to receive(:reactor) { reactor } }
