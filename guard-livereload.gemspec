@@ -23,6 +23,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json',   '~> 1.8'
 
   s.add_development_dependency 'bundler', '>= 1.3.5'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec', '~> 3.1'
 end

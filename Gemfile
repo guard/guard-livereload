@@ -10,4 +10,6 @@ end
 
 group :test do
   gem "coveralls", require: false
+  gem "rake", require: false
+  gem 'rspec', '~> 3.1'
 end
