@@ -30,6 +30,5 @@ module Guard
       sleep options[:grace_period]
       reactor.reload_browser(paths)
     end
-
   end
 end

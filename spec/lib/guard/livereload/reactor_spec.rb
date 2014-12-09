@@ -8,8 +8,8 @@ RSpec.describe Guard::LiveReload::Reactor do
     allow(Guard::Compat::UI).to receive(:warning)
   end
 
-  describe "#reload_browser(paths = [])" do
-    it "displays a message" do
+  describe '#reload_browser(paths = [])' do
+    it 'displays a message' do
       expect(Guard::Compat::UI).to receive(:info).
         with('Reloading browser: stylesheets/layout.css stylesheets/style.css')
       new_live_reactor.reload_browser(paths)
@@ -26,7 +26,7 @@ RSpec.describe Guard::LiveReload::Reactor do
       new_live_reactor(notify: true).reload_browser(paths)
     end
 
-    it "each web socket receives send with data containing default options for each path modified" do
+    it 'each web socket receives send with data containing default options for each path modified' do
       reactor = new_live_reactor
       paths.each do |path|
         reactor.web_sockets.each do |ws|
@@ -36,7 +36,7 @@ RSpec.describe Guard::LiveReload::Reactor do
       reactor.reload_browser(paths)
     end
 
-    it "each web socket receives send with data containing custom options for each path modified" do
+    it 'each web socket receives send with data containing custom options for each path modified' do
       reactor = new_live_reactor(apply_css_live: false, apply_js_live: false)
       paths.each do |path|
         reactor.web_sockets.each do |ws|
@@ -47,20 +47,20 @@ RSpec.describe Guard::LiveReload::Reactor do
     end
   end
 
-  describe "#_connect(ws)" do
+  describe '#_connect(ws)' do
     let(:ws)      { double.as_null_object }
     let(:reactor) { new_live_reactor }
 
-    it "displays a message once" do
-      expect(Guard::Compat::UI).to receive(:info).with("Browser connected.").once
+    it 'displays a message once' do
+      expect(Guard::Compat::UI).to receive(:info).with('Browser connected.').once
       reactor.send(:_connect, ws)
       reactor.send(:_connect, ws)
     end
 
-    it "increments the connection count" do
-      expect {
+    it 'increments the connection count' do
+      expect do
         reactor.send(:_connect, ws)
-      }.to change { reactor.connections_count }.from(0).to 1
+      end.to change { reactor.connections_count }.from(0).to 1
     end
   end
 

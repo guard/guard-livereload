@@ -30,7 +30,7 @@ module Guard
         end
       end
 
-    private
+      private
 
       def _data(path)
         data = {
@@ -52,13 +52,13 @@ module Guard
             ws.onclose   { _disconnect(ws) }
             ws.onmessage { |msg| _print_message(msg) }
           end
-          Compat::UI.info "LiveReload is waiting for a browser to connect."
+          Compat::UI.info 'LiveReload is waiting for a browser to connect.'
         end
       end
 
       def _connect(ws)
         @connections_count += 1
-        Compat::UI.info "Browser connected." if connections_count == 1
+        Compat::UI.info 'Browser connected.' if connections_count == 1
 
         ws.send MultiJson.encode(
           command:    'hello',
@@ -79,7 +79,6 @@ module Guard
         message = MultiJson.decode(message)
         Compat::UI.info "Browser URL: #{message['url']}" if message['command'] == 'url'
       end
-
     end
   end
 end

@@ -1,0 +1,19 @@
+# NOTE: DO NOT put a 'inheried_from' in this file, because Hound with silently
+# ignore it
+#
+# Files you want to exclude
+AllCops:
+  # Rails cops (so we don't need to run with -R option)
+  RunRailsCops: true
+  Exclude:
+    - db/schema.rb
+    - Gemfile
+    - Rakefile
+
+# TODO: put your overrides here:
+
+StringLiterals:
+  EnforcedStyle: single_quotes
+#
+# LineLength:
+#  Max: 200
