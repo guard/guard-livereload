@@ -18,19 +18,19 @@ module Guard
 
       def reload_browser(paths = [])
         msg = "Reloading browser: #{paths.join(' ')}"
-        UI.info msg
+        Compat::UI.info msg
         if options[:notify]
-          Notifier.notify(msg, title: 'Reloading browser', image: :success)
+          Compat::UI.notify(msg, title: 'Reloading browser', image: :success)
         end
 
         paths.each do |path|
           data = _data(path)
-          UI.debug(data)
+          Compat::UI.debug(data)
           web_sockets.each { |ws| ws.send(MultiJson.encode(data)) }
         end
       end
 
-    private
+      private
 
       def _data(path)
         data = {
@@ -52,13 +52,13 @@ module Guard
             ws.onclose   { _disconnect(ws) }
             ws.onmessage { |msg| _print_message(msg) }
           end
-          UI.info "LiveReload is waiting for a browser to connect."
+          Compat::UI.info 'LiveReload is waiting for a browser to connect.'
         end
       end
 
       def _connect(ws)
         @connections_count += 1
-        UI.info "Browser connected." if connections_count == 1
+        Compat::UI.info 'Browser connected.' if connections_count == 1
 
         ws.send MultiJson.encode(
           command:    'hello',
@@ -67,8 +67,8 @@ module Guard
         )
         @web_sockets << ws
       rescue
-        UI.error $!
-        UI.error $!.backtrace
+        Compat::UI.error $!
+        Compat::UI.error $!.backtrace
       end
 
       def _disconnect(ws)
@@ -77,9 +77,8 @@ module Guard
 
       def _print_message(message)
         message = MultiJson.decode(message)
-        UI.info "Browser URL: #{message['url']}" if message['command'] == 'url'
+        Compat::UI.info "Browser URL: #{message['url']}" if message['command'] == 'url'
       end
-
     end
   end
 end

@@ -1,5 +1,4 @@
-require 'guard'
-require 'guard/plugin'
+require 'guard/compat/plugin'
 
 module Guard
   class LiveReload < Plugin
@@ -31,6 +30,5 @@ module Guard
       sleep options[:grace_period]
       reactor.reload_browser(paths)
     end
-
   end
 end

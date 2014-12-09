@@ -1,0 +1,6 @@
+ruby:
+  enabled: true
+  config_file: .rubocop_merged_for_hound.yml
+
+coffee_script:
+  enabled: true
