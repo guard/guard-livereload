@@ -34,7 +34,7 @@ Add guard definition to your Guardfile by running this command:
 $ guard init livereload
 ```
 
-Use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install [LiveReload Safari/Chrome extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)
+And to get everything running in the browser, use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install the [LiveReload Safari/Chrome/Firefox extension](http://livereload.com/extensions#installing-sections).
 
 ## Usage
 
