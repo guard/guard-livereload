@@ -80,6 +80,16 @@ grace_period: 0.5     # default 0 (seconds)
 `notify` uses Guard's [system notifications](https://github.com/guard/guard/wiki/System-notifications).
 See [LiveReload configuration doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x for more info about other options.
 
+## Troubleshooting
+
+##### 1. "hw.ncpu" is an unknown key.
+
+The `hw.ncpu` error usually indicates that the OS environment does not provide a standard way to detect the number of CPUs, required by [@celluloid/celluloid](https://github.com/celluloid/celluloid) (`Guard` uses the `Celluloid` through the `Listen` library). As a workaround it is possible to set the number of threads/CPUs manually with the `NUMBER_OF_PROCESSORS` variable: 
+
+```sh
+NUMBER_OF_PROCESSORS=4 bundle exec guard
+```
+
 ## Development
 
 * Source hosted at [GitHub](https://github.com/guard/guard-livereload).
