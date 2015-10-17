@@ -1,5 +1,5 @@
 group :specs, halt_on_fail: true do
-  guard :rspec, cmd: 'bundle exec rspec', failed_mode: :keep do
+  guard :rspec, cmd: 'bundle exec rspec', failed_mode: :keep, all_on_start: true do
     watch(%r{spec/.+_spec.rb})
     watch(%r{lib/(.+)\.rb})    { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb') { 'spec' }
