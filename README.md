@@ -84,11 +84,9 @@ See [LiveReload configuration doc](https://github.com/mockko/livereload/blob/mas
 
 ##### 1. "hw.ncpu" is an unknown key.
 
-The `hw.ncpu` error usually indicates that the OS environment does not provide a standard way to detect the number of CPUs, required by [@celluloid/celluloid](https://github.com/celluloid/celluloid) (`Guard` uses the `Celluloid` through the `Listen` library). As a workaround it is possible to set the number of threads/CPUs manually with the `NUMBER_OF_PROCESSORS` variable: 
+Solution: just upgrade the `listen` gem to '3.x' (Listen is used by Guard).
 
-```sh
-NUMBER_OF_PROCESSORS=4 bundle exec guard
-```
+(Details: https://github.com/guard/guard-livereload/issues/134)
 
 ## Development
 
