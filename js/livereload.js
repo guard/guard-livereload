@@ -732,7 +732,7 @@
          return this.waitUntilCssLoads(clone, function() {
            var additionalWaitingTime;
            if (/AppleWebKit/.test(navigator.userAgent)) {
-           additionalWaitingTime = 5;
+           additionalWaitingTime = 50;
            } else {
              additionalWaitingTime = 200;
            }
