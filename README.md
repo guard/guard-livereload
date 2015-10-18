@@ -75,6 +75,7 @@ port: '12345'         # default '35729'
 apply_css_live: false # default true
 override_url: false   # default false
 grace_period: 0.5     # default 0 (seconds)
+js_template: './my_livereload.js.erb' # default is livereload.js.erb from gem
 ```
 
 `notify` uses Guard's [system notifications](https://github.com/guard/guard/wiki/System-notifications).
