@@ -1,3 +1,4 @@
+// <%= "guard-livereload options: #{options.inspect}" %>
  (function() {
    var __customevents = {}, __protocol = {}, __connector = {}, __timer = {}, __options = {}, __reloader = {}, __livereload = {}, __less = {}, __startup = {};
 
@@ -732,9 +733,9 @@
          return this.waitUntilCssLoads(clone, function() {
            var additionalWaitingTime;
            if (/AppleWebKit/.test(navigator.userAgent)) {
-           additionalWaitingTime = 5;
+             additionalWaitingTime = <%= options[:js_apple_webkit_extra_wait_time] || 5 %>;
            } else {
-             additionalWaitingTime = 200;
+             additionalWaitingTime = <%= options[:js_default_extra_wait_time] || 200 %>;
            }
            return _this.Timer.start(additionalWaitingTime, function() {
              var _ref;

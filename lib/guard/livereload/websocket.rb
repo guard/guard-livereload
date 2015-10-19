@@ -6,6 +6,11 @@ require 'uri'
 module Guard
   class LiveReload
     class WebSocket < EventMachine::WebSocket::Connection
+      def initialize(options)
+        @livereload_js_path = options[:livereload_js_path]
+        super
+      end
+
       def dispatch(data)
         parser = Http::Parser.new
         parser << data
@@ -47,12 +52,12 @@ module Guard
         end
       end
 
-      def _livereload_js_file
-        File.expand_path('../../../../js/livereload.js', __FILE__)
+      def _livereload_js_path
+        @livereload_js_path
       end
 
       def _serve(path)
-        return _serve_file(_livereload_js_file) if path == './livereload.js'
+        return _serve_file(_livereload_js_path) if path == './livereload.js'
         return _serve_file(path) if _readable_file(path)
         send_data("HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 13\r\n\r\n404 Not Found")
         close_connection_after_writing

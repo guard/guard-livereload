@@ -48,7 +48,12 @@ module Guard
         EventMachine.epoll  if EventMachine.epoll?
         EventMachine.kqueue if EventMachine.kqueue?
         EventMachine.run do
-          EventMachine.start_server(options[:host], options[:port], WebSocket, {}) do |ws|
+          EventMachine.start_server(
+            options[:host],
+            options[:port],
+            WebSocket,
+            options
+          ) do |ws|
             ws.onopen    { _connect(ws) }
             ws.onclose   { _disconnect(ws) }
             ws.onmessage { |msg| _print_message(msg) }

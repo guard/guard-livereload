@@ -75,7 +75,15 @@ port: '12345'         # default '35729'
 apply_css_live: false # default true
 override_url: false   # default false
 grace_period: 0.5     # default 0 (seconds)
+js_template: './my_livereload.js.erb' # default is livereload.js.erb from gem
 ```
+
+Additional custom JS template options (see livereload.js.erb for details):
+``` ruby
+js_apple_webkit_extra_wait_time: 50 # default is 5 (see issue #123)
+js_default_extra_wait_time: 100 # default is 200
+```
+
 
 `notify` uses Guard's [system notifications](https://github.com/guard/guard/wiki/System-notifications).
 See [LiveReload configuration doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x for more info about other options.

@@ -3,7 +3,23 @@ require 'guard/compat/test/helper'
 RSpec.describe Guard::LiveReload do
   let(:plugin) { Guard::LiveReload.new }
   let(:reactor) { double(Guard::LiveReload::Reactor) }
-  before { allow(plugin).to receive(:reactor) { reactor } }
+
+  let(:tmp_path) { '/tmp/livereload-123' }
+  let(:snippet) { instance_double(Guard::LiveReload::Snippet, path: tmp_path) }
+
+  before do
+    allow(File).to receive(:expand_path) do |*args|
+      fail "stub called for File.expand_path(#{args.map(&:inspect) * ','})"
+    end
+
+    allow(File).to receive(:expand_path).
+      with('../../../js/livereload.js.erb', anything).
+      and_return('/foo/js/livereload.js.erb')
+
+    allow(Guard::LiveReload::Snippet).to receive(:new).and_return(snippet)
+
+    allow(plugin).to receive(:reactor) { reactor }
+  end
 
   describe '#initialize' do
     describe ':host option' do
@@ -65,6 +81,38 @@ RSpec.describe Guard::LiveReload do
         expect(plugin.options[:grace_period]).to eq 0.5
       end
     end
+
+    describe ':js_template option' do
+      subject { described_class.new(*args) }
+
+      context 'when no value is provided' do
+        let(:args) { [] }
+
+        it 'is set to full path to default JS' do
+          expect(subject.options[:js_template]).to eq '/foo/js/livereload.js.erb'
+        end
+
+        it 'evalutes the default snippet' do
+          expect(Guard::LiveReload::Snippet).to receive(:new).
+            with('/foo/js/livereload.js.erb', anything).and_return(snippet)
+          subject
+        end
+      end
+
+      context 'with a custom path' do
+        let(:args) { [js_template: 'foo/bar.js.erb'] }
+
+        it 'is set to the given JS' do
+          expect(subject.options[:js_template]).to eq 'foo/bar.js.erb'
+        end
+
+        it 'evalutes the provided snippet' do
+          expect(Guard::LiveReload::Snippet).to receive(:new).
+            with('foo/bar.js.erb', anything).and_return(snippet)
+          subject
+        end
+      end
+    end
   end
 
   describe '#start' do
@@ -75,7 +123,9 @@ RSpec.describe Guard::LiveReload do
         port:           '35729',
         apply_css_live: true,
         override_url:   false,
-        grace_period:  0
+        grace_period:  0,
+        js_template: '/foo/js/livereload.js.erb',
+        livereload_js_path: '/tmp/livereload-123'
       )
       plugin.start
     end
@@ -87,7 +137,9 @@ RSpec.describe Guard::LiveReload do
         port:           '12345',
         apply_css_live: false,
         override_url:   true,
-        grace_period:   1
+        grace_period:   1,
+        js_template: '/foo/js/livereload.js.erb',
+        livereload_js_path: '/tmp/livereload-123'
       )
       plugin.start
     end
