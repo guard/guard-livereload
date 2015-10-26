@@ -5,10 +5,32 @@ require 'guard/livereload/reactor/sockets'
 module Guard
   class LiveReload < Plugin
     class Reactor
+      KNOWN_OPTIONS = %i(
+        notify
+        host
+        port
+        apply_css_live
+        override_url
+        grace_period
+
+        js_template
+        livereload_js_path
+
+        js_options
+
+        js_apple_webkit_extra_wait_time
+        js_default_extra_wait_time
+      )
+
+      # TODO: implement usage of js_options
+      # TODO: deprecate actual js options (js_apple(...) and js_default(...))
 
       attr_reader :thread, :options
 
       def initialize(options)
+        options.keys.each do |key|
+          fail "Unknown option: #{key.inspect}" unless KNOWN_OPTIONS.include?(key)
+        end
 
         @sockets = Sockets.new
         @options = options
