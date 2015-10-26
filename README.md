@@ -92,6 +92,8 @@ See [LiveReload configuration doc](https://github.com/mockko/livereload/blob/mas
 
 To work out what's wrong and where, just follow this easy guide: https://github.com/guard/guard-livereload/wiki/Troubleshooting
 
+### Other issues:
+
 ##### 1. "hw.ncpu" is an unknown key.
 
 Solution: just upgrade the `listen` gem to '3.x' (Listen is used by Guard).
