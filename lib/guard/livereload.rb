@@ -18,8 +18,18 @@ module Guard
         apply_css_live: true,
         override_url:   false,
         grace_period:   0,
-        js_template: js_path
+        js_template: js_path,
+        js_options: {}
       }.merge(options)
+
+      %i(js_apple_webkit_extra_wait_time js_default_extra_wait_time).each do |key|
+        if options.keys.include?(key)
+          Guard::Compat::UI.deprecation "#{key.inspect} is deprecated. Check out :js_options parameter instead."
+          new_key = key.to_s.sub(/^js_/, '').to_sym
+          @options[:js_options][new_key] ||= options[key]
+          @options.delete(key)
+        end
+      end
 
       js_path = @options[:js_template]
 

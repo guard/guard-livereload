@@ -113,6 +113,25 @@ RSpec.describe Guard::LiveReload do
         end
       end
     end
+
+    describe 'with deprecated JS option' do
+      subject { described_class.new(js_default_extra_wait_time: 123) }
+
+      before do
+        allow(Guard::Compat::UI).to receive(:deprecation)
+      end
+
+      it 'moves the value to the right field' do
+        expect(subject.options[:js_options]).to eq(default_extra_wait_time: 123)
+        expect(subject.options).to_not include(js_default_extra_wait_time: 123)
+      end
+
+      it 'shows a deprecation warning' do
+        expect(Guard::Compat::UI).to receive(:deprecation).with(/:js_default_extra_wait_time is deprecated. Check out :js_options/)
+        subject
+      end
+
+    end
   end
 
   describe '#start' do
@@ -125,6 +144,7 @@ RSpec.describe Guard::LiveReload do
         override_url:   false,
         grace_period:  0,
         js_template: '/foo/js/livereload.js.erb',
+        js_options: {},
         livereload_js_path: '/tmp/livereload-123'
       )
       plugin.start
@@ -139,7 +159,8 @@ RSpec.describe Guard::LiveReload do
         override_url:   true,
         grace_period:   1,
         js_template: '/foo/js/livereload.js.erb',
-        livereload_js_path: '/tmp/livereload-123'
+        js_options: {},
+        livereload_js_path: '/tmp/livereload-123',
       )
       plugin.start
     end
