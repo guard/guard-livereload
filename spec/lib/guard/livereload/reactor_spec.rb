@@ -15,6 +15,7 @@ RSpec.describe Guard::LiveReload::Reactor do
   describe '#reload_browser(paths = [])' do
     before do
       allow(sockets).to receive(:broadcast)
+      allow(sockets).to receive(:empty?).and_return(false)
     end
 
     it 'displays a message' do
@@ -63,6 +64,20 @@ RSpec.describe Guard::LiveReload::Reactor do
           end
           subject.reload_browser(paths)
         end
+      end
+
+    end
+
+    context 'with no connected browsers' do
+      subject { new_live_reactor }
+
+      before do
+        allow(sockets).to receive(:empty?).and_return(true)
+      end
+
+      it 'shows a warning' do
+        expect(Guard::Compat::UI).to receive(:warning).with(/No browsers connected at this time!/)
+        subject.reload_browser(paths)
       end
     end
   end

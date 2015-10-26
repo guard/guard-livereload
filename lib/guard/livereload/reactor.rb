@@ -32,7 +32,6 @@ module Guard
         @sockets = Sockets.new
         @options = options
         @thread = Thread.new { _start_reactor }
-        @connections_count = 0
       end
 
       def sockets
@@ -59,6 +58,11 @@ module Guard
 
       def reload_browser(paths = [])
         msg = "Reloading browser: #{paths.join(' ')}"
+
+        if sockets.empty?
+          Compat::UI.warning "No browsers connected at this time! Browser won't refresh!"
+        end
+
         Compat::UI.info msg
         if options[:notify]
           Compat::UI.notify(msg, title: 'Reloading browser', image: :success)

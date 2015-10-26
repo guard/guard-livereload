@@ -29,6 +29,10 @@ module Guard
         def delete(socket)
           @mutex.synchronize { @sockets.delete(socket) }
         end
+
+        def empty?
+          @mutex.synchronize { @sockets.empty? }
+        end
       end
     end
   end
