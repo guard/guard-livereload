@@ -1,15 +1,37 @@
 require 'multi_json'
 
+require 'guard/livereload/reactor/sockets'
+
 module Guard
   class LiveReload < Plugin
     class Reactor
-      attr_reader :web_sockets, :thread, :options, :connections_count
+
+      attr_reader :thread, :options
 
       def initialize(options)
-        @web_sockets       = []
-        @options           = options
-        @thread            = Thread.new { _start_reactor }
+
+        @sockets = Sockets.new
+        @options = options
+        @thread = Thread.new { _start_reactor }
         @connections_count = 0
+      end
+
+      def sockets
+        @sockets
+      end
+
+      # TODO: deprecate
+      # just to prevent semver change
+      # (it's used only for tests anyway)
+      def web_sockets
+        sockets.internal_list
+      end
+
+      # TODO: deprecate
+      # just to prevent semver change
+      # (it's used only for tests anyway)
+      def connections_count
+        sockets.internal_list.size
       end
 
       def stop
@@ -26,7 +48,8 @@ module Guard
         paths.each do |path|
           data = _data(path)
           Compat::UI.debug(data)
-          web_sockets.each { |ws| ws.send(MultiJson.encode(data)) }
+          json = MultiJson.encode(data)
+          sockets.broadcast(json)
         end
       end
 
@@ -63,22 +86,25 @@ module Guard
       end
 
       def _connect(ws)
-        @connections_count += 1
-        Compat::UI.info 'Browser connected.' if connections_count == 1
+        Compat::UI.info 'New browser connecting...'
 
-        ws.send MultiJson.encode(
+        json = MultiJson.encode(
           command:    'hello',
           protocols:  ['http://livereload.com/protocols/official-7'],
           serverName: 'guard-livereload'
         )
-        @web_sockets << ws
+
+        sockets.add(ws) { |socket| socket.send(json) }
+
+        Compat::UI.info "New browser connected (total: #{connections_count})"
       rescue
         Compat::UI.error $!
         Compat::UI.error $!.backtrace
       end
 
       def _disconnect(ws)
-        @web_sockets.delete(ws)
+        sockets.delete(ws)
+        Compat::UI.info "Browser disconnected (total: #{connections_count})"
       end
 
       def _print_message(message)
