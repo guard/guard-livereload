@@ -17,9 +17,6 @@ module Guard
         livereload_js_path
 
         js_options
-
-        js_apple_webkit_extra_wait_time
-        js_default_extra_wait_time
       )
 
       # TODO: implement usage of js_options
