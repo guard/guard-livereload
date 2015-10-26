@@ -22,7 +22,10 @@ module Guard
       }.merge(options)
 
       js_path = @options[:js_template]
-      @options[:livereload_js_path] = Snippet.new(js_path, @options).path
+
+      # NOTE: save snippet as instvar, so it's not GC'ed
+      @snippet = Snippet.new(js_path, @options)
+      @options[:livereload_js_path] = @snippet.path
     end
 
     def start
