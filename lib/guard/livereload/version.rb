@@ -1,5 +1,5 @@
 module Guard
   module LiveReloadVersion
-    VERSION = '2.5.0'
+    VERSION = '2.5.1'
   end
 end
