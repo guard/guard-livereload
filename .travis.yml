@@ -2,10 +2,10 @@ language: ruby
 bundler_args: --without development
 rvm:
   - 2.2.3
-  - jruby-19mode
+  - jruby-head
 matrix:
   allow_failures:
-    - rvm: jruby-19mode
+    - rvm: jruby-head
 notifications:
   recipients:
     - thibaud@thibaud.me
