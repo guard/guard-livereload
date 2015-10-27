@@ -13,3 +13,4 @@ matrix:
 notifications:
   recipients:
     - thibaud@thibaud.me
+sudo: false
