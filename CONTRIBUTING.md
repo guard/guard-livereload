@@ -8,7 +8,7 @@ Please try to provide enough info to reproduce a problem, including:
 
 3. Mentioning what you're doing and how (local/remote livereload, which browser, which OS, which extension, with `Rack`, `Rails`, `Jekyll` or whatever, etc.).
 
-3. Ideally, providing a small repository, so we can reproduce the issue ourselves.
+3. Ideally, providing a small repository with your setup so we can reproduce the issue ourselves.
 
 4. Going through our [Troubleshooting](https://github.com/guard/guard-livereload/wiki/Troubleshooting) guide to see if there's a quick fix for your problem already.
 
