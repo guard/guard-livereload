@@ -2,7 +2,7 @@
 
 # Guard::LiveReload
 
-[![Gem Version](https://badge.fury.io/rb/guard-livereload.png)](http://badge.fury.io/rb/guard-livereload) [![Build Status](https://travis-ci.org/guard/guard-livereload.png?branch=master)](http://travis-ci.org/guard/guard-livereload) [![Dependency Status](https://gemnasium.com/guard/guard-livereload.png)](https://gemnasium.com/guard/guard-livereload) [![Code Climate](https://codeclimate.com/github/guard/guard-livereload.png)](https://codeclimate.com/github/guard/guard-livereload) [![Coverage Status](https://coveralls.io/repos/guard/guard-livereload/badge.png?branch=master)](https://coveralls.io/r/guard/guard-livereload)
+[![Gem Version](https://badge.fury.io/rb/guard-livereload.svg)](http://badge.fury.io/rb/guard-livereload) [![Build Status](https://travis-ci.org/guard/guard-livereload.svg?branch=master)](http://travis-ci.org/guard/guard-livereload) [![Dependency Status](https://gemnasium.com/guard/guard-livereload.svg)](https://gemnasium.com/guard/guard-livereload) [![Code Climate](https://codeclimate.com/github/guard/guard-livereload.svg)](https://codeclimate.com/github/guard/guard-livereload) [![Coverage Status](https://coveralls.io/repos/guard/guard-livereload/badge.svg?branch=master)](https://coveralls.io/r/guard/guard-livereload)
 
 LiveReload guard allows to automatically reload your browser when 'view' files are modified.
 
