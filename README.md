@@ -1,5 +1,7 @@
 ### :warning: Guard::LiveReload is looking for a new maintainer. Please [contact me](mailto:thibaud@thibaud.gg) if you're interested.
 
+[![Join the chat at https://gitter.im/guard/guard-livereload](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/guard/guard-livereload?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # Guard::LiveReload
 
 [![Gem Version](https://badge.fury.io/rb/guard-livereload.svg)](http://badge.fury.io/rb/guard-livereload) [![Build Status](https://travis-ci.org/guard/guard-livereload.svg?branch=master)](http://travis-ci.org/guard/guard-livereload) [![Dependency Status](https://gemnasium.com/guard/guard-livereload.svg)](https://gemnasium.com/guard/guard-livereload) [![Code Climate](https://codeclimate.com/github/guard/guard-livereload.svg)](https://codeclimate.com/github/guard/guard-livereload) [![Coverage Status](https://coveralls.io/repos/guard/guard-livereload/badge.svg?branch=master)](https://coveralls.io/r/guard/guard-livereload)
