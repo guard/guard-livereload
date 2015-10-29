@@ -14,6 +14,8 @@ module Guard
       def dispatch(data)
         parser = Http::Parser.new
         parser << data
+        UI.debug "Request: #{parser.request_url}"
+        UI.debug "Headers: #{parser.headers.inspect}"
         # prepend with '.' to make request url usable as a file path
         request_path = '.' + URI.parse(parser.request_url).path
         request_path += '/index.html' if File.directory? request_path
