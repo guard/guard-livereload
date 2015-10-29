@@ -13,6 +13,10 @@ module Guard
           @mutex.synchronize { @sockets }
         end
 
+        def size
+          @mutex.synchronize { @sockets.size }
+        end
+
         def broadcast(json)
           @mutex.synchronize do
             @sockets.each { |ws| ws.send(json) }

@@ -92,7 +92,7 @@ RSpec.describe Guard::LiveReload::Reactor do
         socket_list << socket
       end
 
-      allow(sockets).to receive(:internal_list).and_return(socket_list)
+      allow(sockets).to receive(:size) { socket_list.size }
     end
 
     context 'when connected once' do

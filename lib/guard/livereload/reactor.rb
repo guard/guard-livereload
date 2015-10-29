@@ -49,7 +49,7 @@ module Guard
       # just to prevent semver change
       # (it's used only for tests anyway)
       def connections_count
-        sockets.internal_list.size
+        sockets.size
       end
 
       def stop
