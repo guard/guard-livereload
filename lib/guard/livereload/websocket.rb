@@ -22,6 +22,8 @@ module Guard
         else
           _serve(request_path)
         end
+      rescue
+        # ignored
       end
 
       private
