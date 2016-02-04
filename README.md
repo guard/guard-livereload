@@ -1,4 +1,4 @@
-#### :warning: :warning: :warning: Security Vulnerability: please upgrade to  v2.5.2 (see commit [a24c99e4](https://github.com/guard/guard-livereload/commit/a24c99e4ce4542d16f5a578df8d47b1275feca46))
+#### :warning: :warning: :warning: Security Vulnerability: please upgrade to v2.5.2 ([see this issue for details](https://github.com/guard/guard-livereload/issues/159))
 
 # Guard::LiveReload
 
