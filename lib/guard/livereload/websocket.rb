@@ -6,6 +6,9 @@ require 'uri'
 module Guard
   class LiveReload
     class WebSocket < EventMachine::WebSocket::Connection
+      HTTP_DATA_FORBIDDEN = "HTTP/1.1 403 Forbidden\r\nContent-Type: text/plain\r\nContent-Length: 13\r\n\r\n403 Forbidden"
+      HTTP_DATA_NOT_FOUND = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 13\r\n\r\n404 Not Found"
+
       def initialize(options)
         @livereload_js_path = options[:livereload_js_path]
         super
@@ -58,8 +61,8 @@ module Guard
 
       def _serve(path)
         return _serve_file(_livereload_js_path) if path == './livereload.js'
-        return _serve_file(path) if _readable_file(path)
-        send_data("HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 13\r\n\r\n404 Not Found")
+        data = _readable_file(path) ? HTTP_DATA_FORBIDDEN : HTTP_DATA_NOT_FOUND
+        send_data(data)
         close_connection_after_writing
       end
 
