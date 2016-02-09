@@ -28,7 +28,7 @@ Add it to your Gemfile (inside development group):
 
 ``` ruby
 group :development do
-  gem 'guard-livereload', '~> 2.4', require: false
+  gem 'guard-livereload', '~> 2.5', require: false
 end
 ```
 
