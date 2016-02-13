@@ -42,7 +42,14 @@ And to get everything running in the browser, use [rack-livereload](https://gith
 
 ## Usage
 
-Please read [Guard usage doc](https://github.com/guard/guard#readme) and [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme) or [LiveReload extension usage doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x
+For a quick start, [check out the wiki](https://github.com/guard/guard-livereload/wiki/Usage).
+
+If you're using Rails or Rack based apps, check out [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme).
+
+For info about Guard and it's plugins, see [Guard usage doc](https://github.com/guard/guard#readme)
+
+For more info about LiveReload extensions, see [LiveReload extension usage doc](https://github.com/mockko/livereload/blob/master/README-old.md) from version 1.x
+
 
 ## Guardfile
 
