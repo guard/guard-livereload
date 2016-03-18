@@ -153,14 +153,22 @@ RSpec.describe Guard::LiveReload do
   end
 
   describe '#run_on_modifications' do
+    let(:sleeper) { instance_double(Guard::LiveReload::GuaranteedSleep) }
+
+    before do
+      allow(reactor).to receive(:reload_browser)
+      allow(Guard::LiveReload::GuaranteedSleep).to receive(:new).and_return(sleeper)
+      allow(sleeper).to receive(:sleep)
+    end
+
     it 'reloads browser' do
       expect(reactor).to receive(:reload_browser).with(['foo'])
       plugin.run_on_modifications(['foo'])
     end
 
-    it 'can wait 0.5 seconds before reloading the browser' do
+    it 'waits given time before reloading the browser' do
       expect(reactor).to receive(:reload_browser).with(['foo'])
-      expect(plugin).to receive(:sleep).with(0.5)
+      allow(sleeper).to receive(:sleep).with(0.5)
       plugin.options[:grace_period] = 0.5
       plugin.run_on_modifications(['foo'])
     end

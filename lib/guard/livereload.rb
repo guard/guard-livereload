@@ -5,6 +5,7 @@ module Guard
     require 'guard/livereload/websocket'
     require 'guard/livereload/reactor'
     require 'guard/livereload/snippet'
+    require 'guard/livereload/guaranteed_sleep'
 
     attr_accessor :reactor, :options
 
@@ -37,7 +38,7 @@ module Guard
     end
 
     def run_on_modifications(paths)
-      sleep options[:grace_period]
+      GuaranteedSleep.new.sleep(options[:grace_period])
       reactor.reload_browser(paths)
     end
   end
