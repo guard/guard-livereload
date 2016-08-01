@@ -22,6 +22,12 @@ RSpec.describe Guard::LiveReload do
           expect(subject.changed('public/foo.jpg')).to eq(%w(public/foo.jpg))
           expect(subject.changed('public/foo.jpeg')).to eq(%w(public/foo.jpeg))
         end
+
+        context 'when extention does not match exactly' do
+          it 'does not reload' do
+            expect(subject.changed('public/main.css.map')).to eq([])
+          end
+        end
       end
 
       context 'with old Rails asset pipeline naming' do
