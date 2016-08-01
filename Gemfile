@@ -7,10 +7,12 @@ group :development do
   gem "guard-rspec", require: false
   gem "guard-rubocop", require: false
   gem "hound-tools", '~> 0.0.4', require: false
+  gem 'timecop'
 end
 
 group :test do
   gem "coveralls", require: false
   gem "rake", require: false
   gem 'rspec', '~> 3.1'
+  gem 'timecop'
 end
