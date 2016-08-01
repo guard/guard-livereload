@@ -9,12 +9,12 @@ RSpec.describe Guard::LiveReload do
 
   before do
     allow(File).to receive(:expand_path) do |*args|
-      fail "stub called for File.expand_path(#{args.map(&:inspect) * ','})"
+      raise "stub called for File.expand_path(#{args.map(&:inspect) * ','})"
     end
 
-    allow(File).to receive(:expand_path).
-      with('../../../js/livereload.js.erb', anything).
-      and_return('/foo/js/livereload.js.erb')
+    allow(File).to receive(:expand_path)
+      .with('../../../js/livereload.js.erb', anything)
+      .and_return('/foo/js/livereload.js.erb')
 
     allow(Guard::LiveReload::Snippet).to receive(:new).and_return(snippet)
 
@@ -93,8 +93,8 @@ RSpec.describe Guard::LiveReload do
         end
 
         it 'evalutes the default snippet' do
-          expect(Guard::LiveReload::Snippet).to receive(:new).
-            with('/foo/js/livereload.js.erb', anything).and_return(snippet)
+          expect(Guard::LiveReload::Snippet).to receive(:new)
+            .with('/foo/js/livereload.js.erb', anything).and_return(snippet)
           subject
         end
       end
@@ -107,8 +107,8 @@ RSpec.describe Guard::LiveReload do
         end
 
         it 'evalutes the provided snippet' do
-          expect(Guard::LiveReload::Snippet).to receive(:new).
-            with('foo/bar.js.erb', anything).and_return(snippet)
+          expect(Guard::LiveReload::Snippet).to receive(:new)
+            .with('foo/bar.js.erb', anything).and_return(snippet)
           subject
         end
       end

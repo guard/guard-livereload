@@ -10,11 +10,11 @@ RSpec.describe Guard::LiveReload::Snippet do
 
   before do
     allow(File).to receive(:expand_path) do |*args|
-      fail "stub called for File.expand_path(#{args.map(&:inspect) * ','})"
+      raise "stub called for File.expand_path(#{args.map(&:inspect) * ','})"
     end
 
     allow(IO).to receive(:read) do |*args|
-      fail "stub called for IO.read(#{args.map(&:inspect) * ','})"
+      raise "stub called for IO.read(#{args.map(&:inspect) * ','})"
     end
 
     allow(IO).to receive(:read).with(template).and_return(contents)

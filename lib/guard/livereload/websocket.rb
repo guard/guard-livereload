@@ -25,7 +25,7 @@ module Guard
             path = payload
             stream_file_data(path).callback { close_connection_after_writing }
           else
-            fail "Unknown response type: #{type.inspect}"
+            raise "Unknown response type: #{type.inspect}"
           end
         end
       end
