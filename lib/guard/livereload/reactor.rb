@@ -73,8 +73,8 @@ module Guard
         )
         @web_sockets << ws
       rescue
-        Compat::UI.error $!
-        Compat::UI.error $!.backtrace
+        Compat::UI.error $ERROR_INFO
+        Compat::UI.error $ERROR_INFO.backtrace
       end
 
       def _disconnect(ws)

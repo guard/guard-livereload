@@ -1,5 +1,5 @@
 RSpec.describe Guard::LiveReload::Reactor do
-  let(:paths) { %w[stylesheets/layout.css stylesheets/style.css] }
+  let(:paths) { %w(stylesheets/layout.css stylesheets/style.css) }
 
   before do
     allow(Guard::Compat::UI).to receive(:info)
@@ -10,8 +10,8 @@ RSpec.describe Guard::LiveReload::Reactor do
 
   describe '#reload_browser(paths = [])' do
     it 'displays a message' do
-      expect(Guard::Compat::UI).to receive(:info).
-        with('Reloading browser: stylesheets/layout.css stylesheets/style.css')
+      expect(Guard::Compat::UI).to receive(:info)
+        .with('Reloading browser: stylesheets/layout.css stylesheets/style.css')
       new_live_reactor.reload_browser(paths)
     end
 
@@ -21,8 +21,8 @@ RSpec.describe Guard::LiveReload::Reactor do
     end
 
     it 'optionally pushes notification' do
-      expect(Guard::Compat::UI).to receive(:notify).
-        with(kind_of(String), have_key(:title))
+      expect(Guard::Compat::UI).to receive(:notify)
+        .with(kind_of(String), have_key(:title))
       new_live_reactor(notify: true).reload_browser(paths)
     end
 
@@ -63,7 +63,6 @@ RSpec.describe Guard::LiveReload::Reactor do
       end.to change { reactor.connections_count }.from(0).to 1
     end
   end
-
 end
 
 def new_live_reactor(options = {})

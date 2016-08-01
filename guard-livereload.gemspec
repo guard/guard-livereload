@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage     = 'https://rubygems.org/gems/guard-livereload'
   s.license      = 'MIT'
 
-  s.files        = `git ls-files`.split($/)
+  s.files        = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   s.test_files   = s.files.grep(%r{^spec/})
   s.require_path = 'lib'
 

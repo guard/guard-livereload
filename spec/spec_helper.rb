@@ -5,7 +5,6 @@ require 'rspec'
 require 'guard/livereload'
 
 RSpec.configure do |config|
-
   def ci?
     ENV['CI'] == 'true'
   end
