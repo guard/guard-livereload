@@ -507,7 +507,12 @@
        };
 
        Reloader.prototype.reloadPage = function() {
-         return this.window.document.location.reload();
+         if (typeof Turbolinks === 'object') {
+           Turbolinks.enableTransitionCache();
+           return Turbolinks.visit(this.window.document.location);
+         } else {
+           return this.window.document.location.reload();
+         }
        };
 
        Reloader.prototype.reloadImages = function(path) {
