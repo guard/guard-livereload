@@ -41,6 +41,19 @@ $ guard init livereload
 And to get everything running in the browser, use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install the [LiveReload Safari/Chrome/Firefox extension](http://livereload.com/extensions#installing-sections).
 
 ## Usage
+Run the server in the directory you want to watch:
+
+    % livereload
+
+You should see something like this:
+
+![](https://github.com/mockko/livereload/raw/master/docs/images/livereload-server-running.png)
+
+Now, if you are using Safari, right-click the page you want to be livereload'ed and choose “Enable LiveReload”:
+
+![](https://github.com/mockko/livereload/raw/master/docs/images/safari-context-menu.png)
+
+If you are using Chrome, just click the toolbar button (it will turn green to indicate that LiveReload is active).
 
 For a quick start, [check out the wiki](https://github.com/guard/guard-livereload/wiki/Usage).
 
