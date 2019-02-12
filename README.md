@@ -35,7 +35,7 @@ end
 Add guard definition to your Guardfile by running this command:
 
 ``` bash
-$ guard init livereload
+$ bundle exec guard init
 ```
 
 And to get everything running in the browser, use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install the [LiveReload Safari/Chrome/Firefox extension](http://livereload.com/extensions#installing-sections).
