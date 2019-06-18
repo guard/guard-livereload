@@ -38,13 +38,13 @@ Add guard definition to your Guardfile by running this command:
 $ guard init livereload
 ```
 
-And to get everything running in the browser, use [rack-livereload](https://github.com/johnbintz/rack-livereload) or install the [LiveReload Safari/Chrome/Firefox extension](http://livereload.com/extensions#installing-sections).
+And to get everything running in the browser, use [rack-livereload](https://github.com/onesupercoder/rack-livereload) or install the [LiveReload Safari/Chrome/Firefox extension](http://livereload.com/extensions#installing-sections).
 
 ## Usage
 
 For a quick start, [check out the wiki](https://github.com/guard/guard-livereload/wiki/Usage).
 
-If you're using Rails or Rack based apps, check out [rack-livereload how it works readme section](https://github.com/johnbintz/rack-livereload#readme).
+If you're using Rails or Rack based apps, check out [rack-livereload how it works readme section](https://github.com/onesupercoder/rack-livereload#readme).
 
 For info about Guard and it's plugins, see [Guard usage doc](https://github.com/guard/guard#readme)
 
