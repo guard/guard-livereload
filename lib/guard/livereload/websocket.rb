@@ -28,6 +28,8 @@ module Guard
             raise "Unknown response type: #{type.inspect}"
           end
         end
+      rescue
+        # ignored
       end
     end
   end
