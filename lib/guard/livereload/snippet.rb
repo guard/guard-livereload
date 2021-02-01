@@ -13,7 +13,7 @@ module Guard
         @options = options # for ERB context
 
         # NOTE: use instance variable for Tempfile, so it's not GC'ed before sending
-        @tmpfile = Tempfile.new('livereload.js')
+        @tmpfile = Tempfile.new(['livereload', '.js'])
         source = IO.read(template)
         data = ERB.new(source).result(binding)
         @tmpfile.write(data)
