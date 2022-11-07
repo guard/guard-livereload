@@ -118,7 +118,7 @@ RSpec.describe Guard::LiveReload do
   describe '#start' do
     it 'creates reactor with default options' do
       plugin = Guard::LiveReload.new
-      expect(Guard::LiveReload::Reactor).to receive(:new).with(
+      expect(Guard::LiveReload::Reactor).to receive(:new).with({
         host:           '0.0.0.0',
         port:           '35729',
         apply_css_live: true,
@@ -126,13 +126,13 @@ RSpec.describe Guard::LiveReload do
         grace_period:  0,
         js_template: '/foo/js/livereload.js.erb',
         livereload_js_path: '/tmp/livereload-123'
-      )
+      })
       plugin.start
     end
 
     it 'creates reactor with given options' do
       plugin = Guard::LiveReload.new(host: '127.3.3.1', port: '12345', apply_css_live: false, override_url: true, grace_period: 1)
-      expect(Guard::LiveReload::Reactor).to receive(:new).with(
+      expect(Guard::LiveReload::Reactor).to receive(:new).with({
         host:           '127.3.3.1',
         port:           '12345',
         apply_css_live: false,
@@ -140,7 +140,7 @@ RSpec.describe Guard::LiveReload do
         grace_period:   1,
         js_template: '/foo/js/livereload.js.erb',
         livereload_js_path: '/tmp/livereload-123'
-      )
+      })
       plugin.start
     end
   end
